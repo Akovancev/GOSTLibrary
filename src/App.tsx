@@ -6,6 +6,7 @@ import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
 
+
 class App extends Component {
   generate(): void {
     const documentCreator = new DocumentCreator();
@@ -24,6 +25,7 @@ class App extends Component {
   newPublishingHouseElement = React.createRef<HTMLInputElement>();
   newYearElement = React.createRef<HTMLInputElement>();
   newCountElement = React.createRef<HTMLInputElement>();
+  changeSelect = React.createRef<HTMLSelectElement>();
   onChangeAuthor = () => {
     store.updateAuthor(this.newAuthorElement.current?.value)
   }
@@ -42,10 +44,19 @@ class App extends Component {
   onChangeCount = () => {
     store.updateCount(this.newCountElement.current?.value)
   }
+  onChangeSelect = () => {
+    store.updateType(this.changeSelect.current?.value)
+  }
 
   render() {
     return (
       <div className="conteiner">
+        <select onChange={this.onChangeSelect} ref={this.changeSelect}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
         <input type="text" placeholder="Автор" 
           value={store.state.author} 
           onChange={ this.onChangeAuthor } 

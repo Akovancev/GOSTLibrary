@@ -2,6 +2,7 @@ export let store = {
     callback() {
         console.log("state changed")
     },
+    type: '0',
     state : {
         author: '',
         title: '',
@@ -32,6 +33,10 @@ export let store = {
     },
     updateCount(newElem) {
         this.state.count = newElem
+        this.callback()
+    },
+    updateType(newElem) {
+        this.type = newElem
         this.callback()
     },
     observerApp(subscribe) {

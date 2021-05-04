@@ -13,7 +13,7 @@ export class DocumentCreator {
           new Paragraph ({
             children: [
               new TextRun({ 
-              text: store.state.author + store.state.place + store.state.publishingHouse + store.state.title,
+              text: store.type,
               font: "Times New Roman",
               size: 28
               })
