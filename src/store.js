@@ -4,15 +4,20 @@ export let store = {
     },
     type: '0',
     state : {
-        author: '',
+        authorIO: '',
+        authorSurname: '',
         title: '',
         place: '',
         publishingHouse: '',
         year: '',
         count: ''
     },
-    updateAuthor(newElem) {
-        this.state.author = newElem
+    updateAuthorSurname(newElem) {
+        this.state.authorSurname = newElem
+        this.callback()
+    },
+    updateAuthorIO(newElem) {
+        this.state.authorIO = newElem
         this.callback()
     },
     updateTitle(newElem) {

@@ -19,15 +19,19 @@ class App extends Component {
     });
   }
 
-  newAuthorElement = React.createRef<HTMLInputElement>();
+  newAuthorSurnameElement = React.createRef<HTMLInputElement>();
+  newAuthorIOElement = React.createRef<HTMLInputElement>();
   newTitleElement = React.createRef<HTMLInputElement>();
   newPlaceElement = React.createRef<HTMLInputElement>();
   newPublishingHouseElement = React.createRef<HTMLInputElement>();
   newYearElement = React.createRef<HTMLInputElement>();
   newCountElement = React.createRef<HTMLInputElement>();
   changeSelect = React.createRef<HTMLSelectElement>();
-  onChangeAuthor = () => {
-    store.updateAuthor(this.newAuthorElement.current?.value)
+  onChangeAuthorSurname = () => {
+    store.updateAuthorSurname(this.newAuthorSurnameElement.current?.value)
+  }
+  onChangeAuthorIO = () => {
+    store.updateAuthorIO(this.newAuthorIOElement.current?.value)
   }
   onChangeTitle = () => {
     store.updateTitle(this.newTitleElement.current?.value)
@@ -58,9 +62,13 @@ class App extends Component {
           <option value="4">4</option>
         </select>
         <input type="text" placeholder="Автор" 
-          value={store.state.author} 
-          onChange={ this.onChangeAuthor } 
-          ref={this.newAuthorElement} />
+          value={store.state.authorSurname} 
+          onChange={ this.onChangeAuthorSurname } 
+          ref={this.newAuthorSurnameElement} />
+        <input type="text" placeholder="Инициалы" 
+          value={store.state.authorIO} 
+          onChange={ this.onChangeAuthorIO } 
+          ref={this.newAuthorIOElement} />
         <input type="text" placeholder="Заглавие" 
           value={store.state.title} 
           onChange={ this.onChangeTitle } 
