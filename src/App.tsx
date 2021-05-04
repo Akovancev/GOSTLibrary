@@ -1,34 +1,15 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import Hello from "./Hello";
-//import "./style.css";
+import './App.css'
 
+import {store} from './store'
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
-import { experiences, education, skills, achievements } from "./cv-data";
-import { DocumentCreator } from "./cv-generator";
+import { DocumentCreator } from "./generator";
 
-interface AppProps {}
-interface AppState {
-  name: string;
-}
-
-class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps | Readonly<AppProps>) {
-    super(props);
-    this.state = {
-      name: "React"
-    };
-  }
-
+class App extends Component {
   generate(): void {
     const documentCreator = new DocumentCreator();
-    const doc = documentCreator.create([
-      experiences,
-      education,
-      skills,
-      achievements
-    ]);
+    const doc = documentCreator.create();
 
     Packer.toBlob(doc).then(blob => {
       console.log(blob);
@@ -37,14 +18,59 @@ class App extends Component<AppProps, AppState> {
     });
   }
 
+  newAuthorElement = React.createRef<HTMLInputElement>();
+  newTitleElement = React.createRef<HTMLInputElement>();
+  newPlaceElement = React.createRef<HTMLInputElement>();
+  newPublishingHouseElement = React.createRef<HTMLInputElement>();
+  newYearElement = React.createRef<HTMLInputElement>();
+  newCountElement = React.createRef<HTMLInputElement>();
+  onChangeAuthor = () => {
+    store.updateAuthor(this.newAuthorElement.current?.value)
+  }
+  onChangeTitle = () => {
+    store.updateTitle(this.newTitleElement.current?.value)
+  }
+  onChangePlace = () => {
+    store.updatePlace(this.newPlaceElement.current?.value)
+  }
+  onChangePublishingHouse = () => {
+    store.updatePublishingHouse(this.newPublishingHouseElement.current?.value)
+  }
+  onChangeYear = () => {
+    store.updateYear(this.newYearElement.current?.value)
+  }
+  onChangeCount = () => {
+    store.updateCount(this.newCountElement.current?.value)
+  }
+
   render() {
     return (
-      <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-          <button onClick={this.generate}>Generate CV with docx!</button>
-        </p>
+      <div className="conteiner">
+        <input type="text" placeholder="Автор" 
+          value={store.state.author} 
+          onChange={ this.onChangeAuthor } 
+          ref={this.newAuthorElement} />
+        <input type="text" placeholder="Заглавие" 
+          value={store.state.title} 
+          onChange={ this.onChangeTitle } 
+          ref={this.newTitleElement} />
+        <input type="text" placeholder="Место издания" 
+          value={store.state.place} 
+          onChange={ this.onChangePlace } 
+          ref={this.newPlaceElement} />
+        <input type="text" placeholder="Издательство" 
+          value={store.state.publishingHouse} 
+          onChange={ this.onChangePublishingHouse } 
+          ref={this.newPublishingHouseElement} />
+        <input type="text" placeholder="Год издания" 
+          value={store.state.year} 
+          onChange={ this.onChangeYear } 
+          ref={this.newYearElement} />
+        <input type="text" placeholder="Количество страниц" 
+          value={store.state.count} 
+          onChange={ this.onChangeCount } 
+          ref={this.newCountElement} />
+        <button onClick={this.generate}>Generate!</button>
       </div>
     );
   }
