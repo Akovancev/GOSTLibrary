@@ -143,5 +143,22 @@ export let store = {
         }
         store.state.collectives.push(newElem)
         store.callback()
+    },
+
+    deleteAuthor() {
+        store.state.author.pop()
+        store.callback()
+    },
+    deleteEditor() {
+        store.state.editor.pop()
+        store.callback()
+    },
+    deleteTranslator() {
+        store.state.translator.pop()
+        store.callback()
+    },
+    deleteCollective() {
+        store.state.collectives.pop()
+        store.callback()
     }
 }
