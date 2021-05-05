@@ -13,7 +13,11 @@ export class DocumentCreator {
           new Paragraph ({
             children: [
               new TextRun({ 
-              text: store.type,
+              text: '\t' + store.state.author[0].authorSurname + ' ' + 'store.state.authorIO' + ' '
+                + store.state.title + ' / ' + 'store.state.authorIO' + ' ' + store.state.titleInformation + ' '
+                + 'store.state.authorSurname' + '.- ' + store.state.place + ': '
+                + store.state.publishingHouse + ', ' + store.state.year + '.- '
+                + store.state.count + ' c.',
               font: "Times New Roman",
               size: 28
               })

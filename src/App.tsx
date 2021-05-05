@@ -5,7 +5,11 @@ import {store} from './store'
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
-
+import Author from "./Components/Author/Author";
+import Editor from "./Components/Responsibility/Editors/Editor";
+import Field from "./Components/Field";
+import Translator from "./Components/Responsibility/Translators/Translator";
+import Collective from "./Components/Responsibility/Collectives/Collective";
 
 class App extends Component {
   generate(): void {
@@ -18,36 +22,7 @@ class App extends Component {
       console.log("Document created successfully");
     });
   }
-
-  newAuthorSurnameElement = React.createRef<HTMLInputElement>();
-  newAuthorIOElement = React.createRef<HTMLInputElement>();
-  newTitleElement = React.createRef<HTMLInputElement>();
-  newPlaceElement = React.createRef<HTMLInputElement>();
-  newPublishingHouseElement = React.createRef<HTMLInputElement>();
-  newYearElement = React.createRef<HTMLInputElement>();
-  newCountElement = React.createRef<HTMLInputElement>();
   changeSelect = React.createRef<HTMLSelectElement>();
-  onChangeAuthorSurname = () => {
-    store.updateAuthorSurname(this.newAuthorSurnameElement.current?.value)
-  }
-  onChangeAuthorIO = () => {
-    store.updateAuthorIO(this.newAuthorIOElement.current?.value)
-  }
-  onChangeTitle = () => {
-    store.updateTitle(this.newTitleElement.current?.value)
-  }
-  onChangePlace = () => {
-    store.updatePlace(this.newPlaceElement.current?.value)
-  }
-  onChangePublishingHouse = () => {
-    store.updatePublishingHouse(this.newPublishingHouseElement.current?.value)
-  }
-  onChangeYear = () => {
-    store.updateYear(this.newYearElement.current?.value)
-  }
-  onChangeCount = () => {
-    store.updateCount(this.newCountElement.current?.value)
-  }
   onChangeSelect = () => {
     store.updateType(this.changeSelect.current?.value)
   }
@@ -61,34 +36,41 @@ class App extends Component {
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <input type="text" placeholder="Автор" 
-          value={store.state.authorSurname} 
-          onChange={ this.onChangeAuthorSurname } 
-          ref={this.newAuthorSurnameElement} />
-        <input type="text" placeholder="Инициалы" 
-          value={store.state.authorIO} 
-          onChange={ this.onChangeAuthorIO } 
-          ref={this.newAuthorIOElement} />
-        <input type="text" placeholder="Заглавие" 
-          value={store.state.title} 
-          onChange={ this.onChangeTitle } 
-          ref={this.newTitleElement} />
-        <input type="text" placeholder="Место издания" 
-          value={store.state.place} 
-          onChange={ this.onChangePlace } 
-          ref={this.newPlaceElement} />
-        <input type="text" placeholder="Издательство" 
-          value={store.state.publishingHouse} 
-          onChange={ this.onChangePublishingHouse } 
-          ref={this.newPublishingHouseElement} />
-        <input type="text" placeholder="Год издания" 
-          value={store.state.year} 
-          onChange={ this.onChangeYear } 
-          ref={this.newYearElement} />
-        <input type="text" placeholder="Количество страниц" 
-          value={store.state.count} 
-          onChange={ this.onChangeCount } 
-          ref={this.newCountElement} />
+        <Author state={store.state} 
+                updateAuthorSurname={store.updateAuthorSurname.bind(store)} 
+                updateAuthorIO={store.updateAuthorIO.bind(store)}/>
+        <Field elem={store.state.title} 
+                update={store.updateTitle.bind(store)}
+                type='Title' />
+        <Field elem={store.state.titleInformation}
+                update={store.updateInformation.bind(store)}
+                type='Title-Information' />
+        <Editor state={store.state}
+                updateEditorSurname={store.updateEditorSurname.bind(store)}
+                updateEditorIO={store.updateEditorIO.bind(store)} />
+        <Translator state={store.state}
+                updateTranslatorSurname={store.updateTranslatorSurname.bind(store)}
+                updateTranslatorIO={store.updateTranslatorIO.bind(store)} />
+        <Collective state={store.state}
+                updateCollective={store.updateCollective.bind(store)} />
+        <Field elem={store.state.place} 
+                update={store.updatePlace.bind(store)}
+                type='Place' />                
+        <Field elem={store.state.replace} 
+                update={store.updateRePlace.bind(store)}
+                type='RePlace' />
+        <Field elem={store.state.publishingHouse} 
+                update={store.updatePublishingHouse.bind(store)}
+                type='House' /> 
+        <Field elem={store.state.republishingHouse} 
+                update={store.updateRePublishingHouse.bind(store)}
+                type='ReHouse' />                 
+        <Field elem={store.state.year} 
+                update={store.updateYear.bind(store)}
+                type='Year' />                 
+        <Field elem={store.state.count} 
+                update={store.updateCount.bind(store)}
+                type='Count' />          
         <button onClick={this.generate}>Generate!</button>
       </div>
     );
