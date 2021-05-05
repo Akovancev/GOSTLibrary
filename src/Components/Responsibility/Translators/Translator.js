@@ -4,7 +4,7 @@ import Field from '../../Field';
 const Translator = (props) => {
   return (
     <div>
-      {props.state.editor.map(p => 
+      {props.state.translator.map(p => 
       <div>
         <Field elem={p.translatorSurname} update={props.updateTranslatorSurname} id={p.id} type='IO-T'/>
         <Field elem={p.translatorIO} update={props.updateTranslatorIO} id={p.id} type='Surname-T'/>

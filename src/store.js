@@ -107,5 +107,41 @@ export let store = {
     updateType(newElem) {
         this.type = newElem
         this.callback()
+    },
+
+    addAuthor() {
+        let newElem = {
+            id: store.state.author[store.state.author.length - 1].id + 1,
+            authorIO: '',
+            authorSurname: ''
+        }
+        store.state.author.push(newElem)
+        store.callback()
+    },
+    addEditor() {
+        let newElem = {
+            id: store.state.editor[store.state.editor.length - 1].id + 1,
+            editorIO: '',
+            editorSurname: ''
+        }
+        store.state.editor.push(newElem)
+        store.callback()
+    },
+    addTranslator() {
+        let newElem = {
+            id: store.state.translator[store.state.translator.length - 1].id + 1,
+            translatorIO: '',
+            translatorSurname: ''
+        }
+        store.state.translator.push(newElem)
+        store.callback()
+    },
+    addCollective() {
+        let newElem = {
+            id: store.state.collectives[store.state.collectives.length - 1].id + 1,
+            collective: ''
+        }
+        store.state.collectives.push(newElem)
+        store.callback()
     }
 }

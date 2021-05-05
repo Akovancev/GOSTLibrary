@@ -39,6 +39,7 @@ class App extends Component {
         <Author state={store.state} 
                 updateAuthorSurname={store.updateAuthorSurname.bind(store)} 
                 updateAuthorIO={store.updateAuthorIO.bind(store)}/>
+        <button onClick={store.addAuthor}>Add Author</button>
         <Field elem={store.state.title} 
                 update={store.updateTitle.bind(store)}
                 type='Title' />
@@ -48,11 +49,14 @@ class App extends Component {
         <Editor state={store.state}
                 updateEditorSurname={store.updateEditorSurname.bind(store)}
                 updateEditorIO={store.updateEditorIO.bind(store)} />
+        <button onClick={store.addEditor}>Add Editor</button>
         <Translator state={store.state}
                 updateTranslatorSurname={store.updateTranslatorSurname.bind(store)}
                 updateTranslatorIO={store.updateTranslatorIO.bind(store)} />
+        <button onClick={store.addTranslator}>Add Translator</button>
         <Collective state={store.state}
                 updateCollective={store.updateCollective.bind(store)} />
+        <button onClick={store.addCollective}>Add Collective</button>
         <Field elem={store.state.place} 
                 update={store.updatePlace.bind(store)}
                 type='Place' />                
