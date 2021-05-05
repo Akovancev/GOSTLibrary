@@ -1,47 +1,58 @@
 import React from 'react'
-import Author from './Author/Author';
-import Collective from './Collectives/Collective';
-import Editor from './Editors/Editor';
+import AuthorForm from './AuthorForm/AuthorForm';
+import CollectiveForm from './CollectiveForm/CollectiveForm';
+import EditorForm from './EditorForm/EditorForm';
 import Field from './Field';
-import Translator from './Translators/Translator';
+import ReHouseForm from './ReHouseForm/ReHouseForm';
+import TitleInformation from './TitleInformation/TitleInformation';
+import TranslatorForm from './TranslatorForm/TranslatorForm';
+import Translator from './TranslatorForm/Translators/Translator';
 
 const FormBook = (props) => {
+    let checkAuthorRef = React.createRef()
+    let checkTitleRef = React.createRef()
+    let checkHouseRef = React.createRef()
+    const handleChangeAuthor = () => {
+        let param = {
+            type: 'UPDATE-CHECK-AUTHOR',
+            newElem: checkAuthorRef.current.checked
+        }
+        props.dispatch(param)
+    }
+    const handleChangeTitle = () => {
+        let param = {
+            type: 'UPDATE-CHECK-TITLE',
+            newElem: checkTitleRef.current.checked
+        }
+        props.dispatch(param)
+    }
+    const handleChangeHouse = () => {
+        let param = {
+            type: 'UPDATE-CHECK-HOUSE',
+            newElem: checkHouseRef.current.checked
+        }
+        props.dispatch(param)
+    }
     return (
         <>
-            <Author state={props.state}
-                dispatch={props.dispatch}/>
-            <button onClick={props.dispatch}>Add Author</button>
-            <button onClick={props.dispatch}>Delete Author</button>
+            <AuthorForm state={props.state} dispatch={props.dispatch} check={props.state.authorCheck} />
+            <input type="checkbox" ref={checkAuthorRef} onChange={handleChangeAuthor} />Без автора
             <Field elem={props.state.title}
                 dispatch={props.dispatch}
                 type='Title' />
-            <Field elem={props.state.titleInformation}
-                dispatch={props.dispatch}
-                type='Title-Information' />
-            <Editor state={props.state}
-                dispatch={props.dispatch} />
-            <button onClick={props.dispatch}>Add Editor</button>
-            <button onClick={props.dispatch}>Delete Editor</button>
-            <Translator state={props.state}
-                dispatch={props.dispatch}/>
-            <button onClick={props.dispatch}>Add Translator</button>
-            <button onClick={props.dispatch}>Delete Translator</button>
-            <Collective state={props.state}
-                dispatch={props.dispatch} />
-            <button onClick={props.dispatch}>Add Collective</button>
-            <button onClick={props.dispatch}>Delete Collective</button>
+            <TitleInformation state={props.state} dispatch={props.dispatch} check={props.state.titleCheck} />
+            <input type="checkbox" ref={checkTitleRef} onChange={handleChangeTitle} />Без сведений о книге
+            <EditorForm state={props.state} dispatch={props.dispatch} />
+            <TranslatorForm state={props.state} dispatch={props.dispatch} />
+            <CollectiveForm state={props.state} dispatch={props.dispatch} />
             <Field elem={props.state.place}
                 dispatch={props.dispatch}
                 type='Place' />
-            <Field elem={props.state.replace}
-                dispatch={props.dispatch}
-                type='RePlace' />
             <Field elem={props.state.publishingHouse}
                 dispatch={props.dispatch}
                 type='House' />
-            <Field elem={props.state.republishingHouse}
-                dispatch={props.dispatch}
-                type='ReHouse' />
+            <input type="checkbox" ref={checkHouseRef} onChange={handleChangeHouse} />Была переиздана
+            <ReHouseForm state={props.state} dispatch={props.dispatch} check={props.state.houseCheck} />
             <Field elem={props.state.year}
                 dispatch={props.dispatch}
                 type='Year' />

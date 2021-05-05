@@ -26,12 +26,12 @@ class App extends Component {
   render() {
     return (
       <div className="conteiner">
-        <select onChange={this.onChangeSelect} ref={this.changeSelect}>
+        {/* <select onChange={this.onChangeSelect} ref={this.changeSelect}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
-        </select>
+        </select> */}
         <FormBook state={store.state} dispatch={store.dispatch.bind(store)}/>
         {/* <Author state={store.state} 
                 updateAuthorSurname={store.updateAuthorSurname.bind(store)} 

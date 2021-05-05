@@ -7,6 +7,9 @@ export let store = {
     },
     state : {
         type: 'book',
+        authorCheck: false,
+        titleCheck: false,
+        houseCheck: false,
         author: [
             {
                 id: 0,
@@ -22,24 +25,13 @@ export let store = {
         republishingHouse: '',
         year: '',
         editor: [
-            {
-                id: 0,
-                editorIO: '',
-                editorSurname: ''
-            }
+
         ],
         translator: [
-            {
-                id: 0,
-                translatorIO: '',
-                translatorSurname: ''
-            }
+
         ],
         collectives: [
-            {
-                id: 0,
-                collective: '',
-            }
+
         ],
         count: '',
         series: ''
@@ -53,8 +45,16 @@ export let store = {
         this.state.author[i].authorIO = newElem
         this.callback()
     },
+    _updateAuthorCheck(newElem) {
+        this.state.authorCheck = newElem
+        this.callback()
+    }, 
     _updateTitle(newElem) {
         this.state.title = newElem
+        this.callback()
+    },
+    _updateTitleCheck(newElem) {
+        this.state.titleCheck = newElem
         this.callback()
     },
     _updateInformation(newElem){
@@ -97,6 +97,10 @@ export let store = {
         this.state.republishingHouse = newElem
         this.callback()
     },
+    _updateHouseCheck(newElem) {
+        this.state.houseCheck = newElem
+        this.callback()
+    },
     _updateYear(newElem) {
         this.state.year = newElem
         this.callback()
@@ -111,8 +115,15 @@ export let store = {
     },
 
     _addAuthor() {
+        let newId
+        if (store.state.author.length === 0){
+            newId = 0
+        }
+        else {
+            newId = store.state.author[store.state.author.length - 1].id + 1
+        }
         let newElem = {
-            id: store.state.author[store.state.author.length - 1].id + 1,
+            id: newId,
             authorIO: '',
             authorSurname: ''
         }
@@ -120,8 +131,15 @@ export let store = {
         store.callback()
     },
     _addEditor() {
+        let newId
+        if (store.state.editor.length === 0){
+            newId = 0
+        }
+        else {
+            newId = store.state.editor[store.state.editor.length - 1].id + 1
+        }
         let newElem = {
-            id: store.state.editor[store.state.editor.length - 1].id + 1,
+            id: newId,
             editorIO: '',
             editorSurname: ''
         }
@@ -129,8 +147,15 @@ export let store = {
         store.callback()
     },
     _addTranslator() {
+        let newId
+        if (store.state.translator.length === 0){
+            newId = 0
+        }
+        else {
+            newId = store.state.translator[store.state.translator.length - 1].id + 1
+        }
         let newElem = {
-            id: store.state.translator[store.state.translator.length - 1].id + 1,
+            id: newId,
             translatorIO: '',
             translatorSurname: ''
         }
@@ -138,8 +163,15 @@ export let store = {
         store.callback()
     },
     _addCollective() {
+        let newId
+        if (store.state.collectives.length === 0){
+            newId = 0
+        }
+        else {
+            newId = store.state.collectives[store.state.collectives.length - 1].id + 1
+        }
         let newElem = {
-            id: store.state.collectives[store.state.collectives.length - 1].id + 1,
+            id: newId,
             collective: ''
         }
         store.state.collectives.push(newElem)
@@ -147,8 +179,10 @@ export let store = {
     },
 
     _deleteAuthor() {
-        store.state.author.pop()
-        store.callback()
+        if (store.state.author.length > 1) {
+            store.state.author.pop()
+            store.callback()
+        }
     },
     _deleteEditor() {
         store.state.editor.pop()
@@ -170,6 +204,9 @@ export let store = {
         else if (param.type === 'UPDATE-AUTHOR-IO') {
             this._updateAuthorIO(param.newElem, param.i)            
         }
+        else if (param.type === 'UPDATE-CHECK-AUTHOR') {
+            this._updateAuthorCheck(param.newElem)            
+        }
         else if (param.type === 'UPDATE-EDITOR-SURNAME') {
             this._updateEditorSurname(param.newElem, param.i)
         }
@@ -188,6 +225,9 @@ export let store = {
         else if (param.type === 'UPDATE-TITLE') {
             this._updateTitle(param.newElem)
         }
+        else if (param.type === 'UPDATE-CHECK-TITLE') {
+            this._updateTitleCheck(param.newElem)            
+        }
         else if (param.type === 'UPDATE-INFORMATION') {
             this._updateInformation(param.newElem)
         }
@@ -196,6 +236,9 @@ export let store = {
         }
         else if (param.type === 'UPDATE-REPLACE') {
             this._updateRePlace(param.newElem)
+        }
+        else if (param.type === 'UPDATE-CHECK-HOUSE') {
+            this._updateHouseCheck(param.newElem)            
         }
         else if (param.type === 'UPDATE-YEAR') {
             this._updateYear(param.newElem)
@@ -235,6 +278,9 @@ export let store = {
         }
         else if (param.type === 'DELETE-COLLECTIVE') {
             this._deleteCollective()
+        }
+        else if (param.type === 'CALLBACK') {
+            this.callback()
         }
     }
 }
