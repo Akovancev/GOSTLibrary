@@ -5,11 +5,7 @@ import {store} from './store'
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
-import Author from "./Components/Author/Author";
-import Editor from "./Components/Responsibility/Editors/Editor";
-import Field from "./Components/Field";
-import Translator from "./Components/Responsibility/Translators/Translator";
-import Collective from "./Components/Responsibility/Collectives/Collective";
+import FormBook from "./Components/FormBook/FormBook";
 
 class App extends Component {
   generate(): void {
@@ -24,7 +20,7 @@ class App extends Component {
   }
   changeSelect = React.createRef<HTMLSelectElement>();
   onChangeSelect = () => {
-    store.updateType(this.changeSelect.current?.value)
+   // store.updateType(this.changeSelect.current?.value)
   }
 
   render() {
@@ -36,7 +32,8 @@ class App extends Component {
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <Author state={store.state} 
+        <FormBook state={store.state} dispatch={store.dispatch.bind(store)}/>
+        {/* <Author state={store.state} 
                 updateAuthorSurname={store.updateAuthorSurname.bind(store)} 
                 updateAuthorIO={store.updateAuthorIO.bind(store)}/>
         <button onClick={store.addAuthor}>Add Author</button>
@@ -78,7 +75,7 @@ class App extends Component {
                 type='Year' />                 
         <Field elem={store.state.count} 
                 update={store.updateCount.bind(store)}
-                type='Count' />          
+                type='Count' />           */}
         <button onClick={this.generate}>Generate!</button>
       </div>
     );

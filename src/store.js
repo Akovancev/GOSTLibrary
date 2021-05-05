@@ -44,72 +44,73 @@ export let store = {
         count: '',
         series: ''
     },
-    updateAuthorSurname(newElem, i) {
+
+    _updateAuthorSurname(newElem, i) {
         this.state.author[i].authorSurname = newElem
         this.callback()
     },
-    updateAuthorIO(newElem, i) {
+    _updateAuthorIO(newElem, i) {
         this.state.author[i].authorIO = newElem
         this.callback()
     },
-    updateTitle(newElem) {
+    _updateTitle(newElem) {
         this.state.title = newElem
         this.callback()
     },
-    updateInformation(newElem){
+    _updateInformation(newElem){
         this.state.titleInformation = newElem
         this.callback()
     },
-    updateEditorSurname(newElem, i) {
+    _updateEditorSurname(newElem, i) {
         this.state.editor[i].editorSurname = newElem
         this.callback()
     },
-    updateEditorIO(newElem, i) {
+    _updateEditorIO(newElem, i) {
         this.state.editor[i].editorIO = newElem
         this.callback()
     },
-    updateTranslatorSurname(newElem, i) {
+    _updateTranslatorSurname(newElem, i) {
         this.state.translator[i].translatorSurname = newElem
         this.callback()
     },
-    updateTranslatorIO(newElem, i) {
+    _updateTranslatorIO(newElem, i) {
         this.state.translator[i].translatorIO = newElem
         this.callback()
     },
-    updateCollective(newElem, i) {
+    _updateCollective(newElem, i) {
         this.state.collectives[i].collective = newElem
         this.callback()
     },
-    updatePlace(newElem) {
+    _updatePlace(newElem) {
         this.state.place = newElem
         this.callback()
     },
-    updateRePlace(newElem) {
+    _updateRePlace(newElem) {
         this.state.replace = newElem
         this.callback()
     },
-    updatePublishingHouse(newElem) {
+    _updatePublishingHouse(newElem) {
         this.state.publishingHouse = newElem
         this.callback()
     },
-    updateRePublishingHouse(newElem) {
+    _updateRePublishingHouse(newElem) {
         this.state.republishingHouse = newElem
         this.callback()
     },
-    updateYear(newElem) {
+    _updateYear(newElem) {
         this.state.year = newElem
         this.callback()
     },
-    updateCount(newElem) {
+    _updateCount(newElem) {
         this.state.count = newElem
         this.callback()
     },
-    updateType(newElem) {
+    _updateType(newElem) {
         this.type = newElem
         this.callback()
     },
 
-    addAuthor() {
+    _addAuthor() {
         let newElem = {
             id: store.state.author[store.state.author.length - 1].id + 1,
             authorIO: '',
@@ -118,7 +119,7 @@ export let store = {
         store.state.author.push(newElem)
         store.callback()
     },
-    addEditor() {
+    _addEditor() {
         let newElem = {
             id: store.state.editor[store.state.editor.length - 1].id + 1,
             editorIO: '',
@@ -127,7 +128,7 @@ export let store = {
         store.state.editor.push(newElem)
         store.callback()
     },
-    addTranslator() {
+    _addTranslator() {
         let newElem = {
             id: store.state.translator[store.state.translator.length - 1].id + 1,
             translatorIO: '',
@@ -136,7 +137,7 @@ export let store = {
         store.state.translator.push(newElem)
         store.callback()
     },
-    addCollective() {
+    _addCollective() {
         let newElem = {
             id: store.state.collectives[store.state.collectives.length - 1].id + 1,
             collective: ''
@@ -145,20 +146,95 @@ export let store = {
         store.callback()
     },
 
-    deleteAuthor() {
+    _deleteAuthor() {
         store.state.author.pop()
         store.callback()
     },
-    deleteEditor() {
+    _deleteEditor() {
         store.state.editor.pop()
         store.callback()
     },
-    deleteTranslator() {
+    _deleteTranslator() {
         store.state.translator.pop()
         store.callback()
     },
-    deleteCollective() {
+    _deleteCollective() {
         store.state.collectives.pop()
         store.callback()
+    },
+
+    dispatch(param) {
+        if (param.type === 'UPDATE-AUTHOR-SURNAME') {
+            this._updateAuthorSurname(param.newElem, param.i)
+        }
+        else if (param.type === 'UPDATE-AUTHOR-IO') {
+            this._updateAuthorIO(param.newElem, param.i)            
+        }
+        else if (param.type === 'UPDATE-EDITOR-SURNAME') {
+            this._updateEditorSurname(param.newElem, param.i)
+        }
+        else if (param.type === 'UPDATE-EDITOR-IO') {
+           this._updateEditorIO(param.newElem, param.i)            
+        }
+        else if (param.type === 'UPDATE-TRANSLATOR-SURNAME') {
+            this._updateTranslatorSurname(param.newElem, param.i) 
+        }
+        else if (param.type === 'UPDATE-TRANSLATOR-IO') {
+            this._updateTranslatorIO(param.newElem, param.i)            
+        }
+        else if (param.type === 'UPDATE-COLLECTIVE') {
+            this._updateCollective(param.newElem, param.i)
+        }
+        else if (param.type === 'UPDATE-TITLE') {
+            this._updateTitle(param.newElem)
+        }
+        else if (param.type === 'UPDATE-INFORMATION') {
+            this._updateInformation(param.newElem)
+        }
+        else if (param.type === 'UPDATE-PLACE') {
+            this._updatePlace(param.newElem)
+        }
+        else if (param.type === 'UPDATE-REPLACE') {
+            this._updateRePlace(param.newElem)
+        }
+        else if (param.type === 'UPDATE-YEAR') {
+            this._updateYear(param.newElem)
+        }
+        else if (param.type === 'UPDATE-COUNT') {
+            this._updateCount(param.newElem)
+        }
+        else if (param.type === 'UPDATE-PUBLISHING') {
+            this._updatePublishingHouse(param.newElem)
+        }
+        else if (param.type === 'UPDATE-REPUBLISHING') {
+            this._updateRePublishingHouse(param.newElem)
+        }
+        else if (param.type === 'UPDATE-TYPE') {
+            this._updateType(param.newElem)
+        }
+        else if (param.type === 'ADD-AUTHOR') {
+            this._addAuthor()
+        }
+        else if (param.type === 'ADD-EDITOR') {
+            this._addEditor()
+        }
+        else if (param.type === 'ADD-TRANSLATOR') {
+            this._addTranslator()
+        }
+        else if (param.type === 'ADD-COLLECTIVE') {
+            this._addCollective()
+        }
+        else if (param.type === 'DELETE-AUTHOR') {
+            this._deleteAuthor()
+        }
+        else if (param.type === 'DELETE-EDITOR') {
+            this._deleteEditor()
+        }
+        else if (param.type === 'DELETE-TRANSLATOR') {
+            this._deleteTranslator()
+        }
+        else if (param.type === 'DELETE-COLLECTIVE') {
+            this._deleteCollective()
+        }
     }
 }
