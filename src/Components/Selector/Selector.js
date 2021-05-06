@@ -1,12 +1,20 @@
 import React from 'react'
 import FormBook from '../FormBook/FormBook';
+import FormArticle from '../FormArticle/FormArticle';
 
 const Selector = (props) => {
     switch (props.state.type) {
-        case 0:
+        case 'book':
             return (
                 <>
                     <FormBook state={props.state} dispatch={props.dispatch} />
+                    <hr />
+                </>
+            )
+        case 'article':
+            return (
+                <>
+                    <FormArticle state={props.state} dispatch={props.dispatch} />
                     <hr />
                 </>
             )

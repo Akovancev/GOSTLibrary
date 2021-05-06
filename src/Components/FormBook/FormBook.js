@@ -2,7 +2,7 @@ import React from 'react'
 import AuthorForm from './AuthorForm/AuthorForm';
 import CollectiveForm from './CollectiveForm/CollectiveForm';
 import EditorForm from './EditorForm/EditorForm';
-import Field from './Field';
+import Field from '../Field';
 import ReHouseForm from './ReHouseForm/ReHouseForm';
 import TitleInformation from './TitleInformation/TitleInformation';
 import Tom from './TomForm/TomForm';
@@ -68,7 +68,7 @@ const FormBook = (props) => {
                 index={props.state.id}
                 type='House' />
             <input type="checkbox" ref={checkHouseRef} onChange={handleChangeHouse} />Была переиздана
-            <ReHouseForm state={props.state} dispatch={props.dispatch} check={props.state.houseCheck} />
+            {/* <ReHouseForm state={props.state} dispatch={props.dispatch} check={props.state.houseCheck} /> */}
             <Field elem={props.state.year}
                 dispatch={props.dispatch}
                 index={props.state.id}

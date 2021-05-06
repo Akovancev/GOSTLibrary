@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 0,
+        type: 'collection',
         authorCheck: false,
         titleCheck: false,
         houseCheck: false,
@@ -38,7 +38,7 @@ export let store = {
         let i = this.state.length 
         let newElem = {
             id: i,
-            type: 0,
+            type: 'book',
             authorCheck: false,
             titleCheck: false,
             houseCheck: false,

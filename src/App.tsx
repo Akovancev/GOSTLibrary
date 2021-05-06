@@ -5,7 +5,6 @@ import { store } from './store'
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
-import FormBook from "./Components/FormBook/FormBook";
 import Selector from "./Components/Selector/Selector";
 
 
