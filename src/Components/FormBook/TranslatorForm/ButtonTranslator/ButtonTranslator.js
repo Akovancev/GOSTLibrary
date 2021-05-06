@@ -3,12 +3,14 @@ import React from 'react'
 const ButtonTranslator = (props) => {
     const onClickAdd = () => {
         let param = {
+            id: props.state.id,
             type: 'ADD-TRANSLATOR'
         }
         props.dispatch(param)
     }
     const onClickDelete = () => {
         let param = {
+            id: props.state.id,
             type: 'DELETE-TRANSLATOR'
         }
         props.dispatch(param)

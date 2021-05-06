@@ -3,12 +3,14 @@ import React from 'react'
 const ButtonAuthor = (props) => {
     const onClickAdd = () => {
         let param = {
+            id: props.state.id,
             type: 'ADD-AUTHOR'
         }
         props.dispatch(param)
     }
     const onClickDelete = () => {
         let param = {
+            id: props.state.id,
             type: 'DELETE-AUTHOR'
         }
         props.dispatch(param)

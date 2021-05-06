@@ -8,7 +8,7 @@ const AuthorForm = (props) => {
         <>
             <Author state={props.state}
                 dispatch={props.dispatch}/>
-            <ButtonAuthor dispatch={props.dispatch} check={props.state.author.length > 1} />
+            <ButtonAuthor dispatch={props.dispatch} check={props.state.author.length > 1} state={props.state}/>
         </>
     )
     else return <></>

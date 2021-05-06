@@ -5,6 +5,7 @@ const Field = (props) => {
   const onChange = () => {
     let param = {
       type: t,
+      id: props.index,
       newElem: newElement.current.value,
       i: props.id
     }

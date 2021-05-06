@@ -6,8 +6,8 @@ const Translator = (props) => {
     <div>
       {props.state.translator.map(p => 
       <div>
-        <Field elem={p.translatorSurname} dispatch={props.dispatch} id={p.id} type='Surname-T'/>
-        <Field elem={p.translatorIO} dispatch={props.dispatch} id={p.id} type='IO-T'/>
+        <Field elem={p.translatorSurname} dispatch={props.dispatch} id={p.id} type='Surname-T' index={props.state.id}/>
+        <Field elem={p.translatorIO} dispatch={props.dispatch} id={p.id} type='IO-T' index={props.state.id}/>
       </div>
       )}
     </div>

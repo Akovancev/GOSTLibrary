@@ -7,6 +7,7 @@ const TitleInformation = (props) => {
             <>
                 <Field elem={props.state.titleInformation}
                     dispatch={props.dispatch}
+                    index={props.state.id}
                     type='Title-Information' />
             </>
         )

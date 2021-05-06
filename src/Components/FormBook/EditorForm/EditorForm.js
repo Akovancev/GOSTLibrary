@@ -7,7 +7,7 @@ const EditorForm = (props) => {
         <>
             <Editor state={props.state}
                 dispatch={props.dispatch} />
-            <ButtonEditor dispatch={props.dispatch} check={props.state.editor.length > 0} />
+            <ButtonEditor dispatch={props.dispatch} check={props.state.editor.length > 0} state={props.state}/>
         </>
     )
 }

@@ -7,9 +7,11 @@ const ReHouseForm = (props) => {
             <>
                 <Field elem={props.state.replace}
                     dispatch={props.dispatch}
+                    index={props.state.id}
                     type='RePlace' />
                 <Field elem={props.state.republishingHouse}
                     dispatch={props.dispatch}
+                    index={props.state.id}
                     type='ReHouse' />
             </>
         )

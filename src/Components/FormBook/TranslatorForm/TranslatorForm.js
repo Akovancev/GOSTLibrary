@@ -7,7 +7,7 @@ const TranslatorForm = (props) => {
         <>
             <Translator state={props.state}
                 dispatch={props.dispatch}/>
-            <ButtonTranslator dispatch={props.dispatch} check={props.state.translator.length > 0} />
+            <ButtonTranslator dispatch={props.dispatch} check={props.state.translator.length > 0} state={props.state}/>
         </>
     )
 }

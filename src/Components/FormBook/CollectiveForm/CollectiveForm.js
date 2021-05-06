@@ -7,7 +7,7 @@ const CollectiveForm = (props) => {
         <>
             <Collective state={props.state}
                 dispatch={props.dispatch} />
-            <ButtonCollective dispatch={props.dispatch} check={props.state.collectives.length > 0} />
+            <ButtonCollective dispatch={props.dispatch} check={props.state.collectives.length > 0} state={props.state}/>
         </>
     )
 }

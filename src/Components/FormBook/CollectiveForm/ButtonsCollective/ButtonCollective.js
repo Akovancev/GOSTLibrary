@@ -3,12 +3,14 @@ import React from 'react'
 const ButtonCollective = (props) => {
     const onClickAdd = () => {
         let param = {
+            id: props.state.id,
             type: 'ADD-COLLECTIVE'
         }
         props.dispatch(param)
     }
     const onClickDelete = () => {
         let param = {
+            id: props.state.id,
             type: 'DELETE-COLLECTIVE'
         }
         props.dispatch(param)

@@ -15,6 +15,7 @@ const FormBook = (props) => {
     const handleChangeAuthor = () => {
         let param = {
             type: 'UPDATE-CHECK-AUTHOR',
+            id: props.state.id,
             newElem: checkAuthorRef.current.checked
         }
         props.dispatch(param)
@@ -22,6 +23,7 @@ const FormBook = (props) => {
     const handleChangeTitle = () => {
         let param = {
             type: 'UPDATE-CHECK-TITLE',
+            id: props.state.id,
             newElem: checkTitleRef.current.checked
         }
         props.dispatch(param)
@@ -29,6 +31,7 @@ const FormBook = (props) => {
     const handleChangeHouse = () => {
         let param = {
             type: 'UPDATE-CHECK-HOUSE',
+            id: props.state.id,
             newElem: checkHouseRef.current.checked
         }
         props.dispatch(param)
@@ -39,6 +42,7 @@ const FormBook = (props) => {
             <input type="checkbox" ref={checkAuthorRef} onChange={handleChangeAuthor} />Без автора
             <Field elem={props.state.title}
                 dispatch={props.dispatch}
+                index={props.state.id}
                 type='Title' />
             <TitleInformation state={props.state} dispatch={props.dispatch} check={props.state.titleCheck} />
             <input type="checkbox" ref={checkTitleRef} onChange={handleChangeTitle} />Без сведений о книге
@@ -47,17 +51,21 @@ const FormBook = (props) => {
             <CollectiveForm state={props.state} dispatch={props.dispatch} />
             <Field elem={props.state.place}
                 dispatch={props.dispatch}
+                index={props.state.id}
                 type='Place' />
             <Field elem={props.state.publishingHouse}
                 dispatch={props.dispatch}
+                index={props.state.id}
                 type='House' />
             <input type="checkbox" ref={checkHouseRef} onChange={handleChangeHouse} />Была переиздана
             <ReHouseForm state={props.state} dispatch={props.dispatch} check={props.state.houseCheck} />
             <Field elem={props.state.year}
                 dispatch={props.dispatch}
+                index={props.state.id}
                 type='Year' />
             <Field elem={props.state.count}
                 dispatch={props.dispatch}
+                index={props.state.id}
                 type='Count' />
         </>
     )
