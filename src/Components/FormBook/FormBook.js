@@ -5,6 +5,7 @@ import EditorForm from './EditorForm/EditorForm';
 import Field from './Field';
 import ReHouseForm from './ReHouseForm/ReHouseForm';
 import TitleInformation from './TitleInformation/TitleInformation';
+import Tom from './TomForm/TomForm';
 import TranslatorForm from './TranslatorForm/TranslatorForm';
 import Translator from './TranslatorForm/Translators/Translator';
 
@@ -12,6 +13,7 @@ const FormBook = (props) => {
     let checkAuthorRef = React.createRef()
     let checkTitleRef = React.createRef()
     let checkHouseRef = React.createRef()
+    let checkTomRef = React.createRef()
     const handleChangeAuthor = () => {
         let param = {
             type: 'UPDATE-CHECK-AUTHOR',
@@ -33,6 +35,14 @@ const FormBook = (props) => {
             type: 'UPDATE-CHECK-HOUSE',
             id: props.state.id,
             newElem: checkHouseRef.current.checked
+        }
+        props.dispatch(param)
+    }
+    const handleChangeTom = () => {
+        let param = {
+            type: 'UPDATE-CHECK-TOM',
+            id: props.state.id,
+            newElem: checkTomRef.current.checked
         }
         props.dispatch(param)
     }
@@ -67,6 +77,8 @@ const FormBook = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Count' />
+            <input type="checkbox" ref={checkTomRef} onChange={handleChangeTom} />Добавить том
+            <Tom state={props.state} dispatch={props.dispatch} check={props.state.tomCheck} />
         </>
     )
 }

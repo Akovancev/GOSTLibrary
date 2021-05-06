@@ -73,6 +73,14 @@ const Field = (props) => {
     placeholder = 'Обьем'
     t = 'UPDATE-COUNT'
   }
+  else if (props.type === 'T-Name') {
+    placeholder = 'Название тома'
+    t = 'UPDATE-TOM-NAME'
+  }
+  else if (props.type === 'T-Number') {
+    placeholder = 'Номер тома'
+    t = 'UPDATE-TOM-NUMBER'
+  }
   return (
     <input type="text" placeholder={placeholder}
     value={props.elem} 

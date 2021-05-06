@@ -7,10 +7,11 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'book',
+        type: 0,
         authorCheck: false,
         titleCheck: false,
         houseCheck: false,
+        tomCheck: false,
         author: [
             {
                 id: 0,
@@ -18,6 +19,8 @@ export let store = {
                 authorSurname: ''
             }
         ],
+        tomNunber: '',
+        tomName: '',
         title: '',
         titleInformation: '',
         place: '',
@@ -30,6 +33,45 @@ export let store = {
         collectives: [],
         count: ''
     }],
+
+    _addState(index) {
+        let i = this.state.length 
+        let newElem = {
+            id: i,
+            type: 0,
+            authorCheck: false,
+            titleCheck: false,
+            houseCheck: false,
+            tomCheck: false,
+            author: [
+                {
+                    id: 0,
+                    authorIO: '',
+                    authorSurname: ''
+                }
+            ],
+            tomNunber: '',
+            tomName: '',
+            title: '',
+            titleInformation: '',
+            place: '',
+            replace: '',
+            publishingHouse: '',
+            republishingHouse: '',
+            year: '',
+            editor: [],
+            translator: [],
+            collectives: [],
+            count: ''
+        }
+        this.state.push(newElem)
+        this.callback()
+    },
+
+    _deleteState(index) {
+        this.state.pop()
+        this.callback()
+    },
 
     _updateAuthorSurname(newElem, i, id) {
         this.state[id].author[i].authorSurname = newElem
@@ -53,6 +95,18 @@ export let store = {
     },
     _updateInformation(newElem, id){
         this.state[id].titleInformation = newElem
+        this.callback()
+    },
+    _updateTomNumber(newElem, id) {
+        this.state[id].tomNunber = newElem
+        this.callback()
+    },
+    _updateTomName(newElem, id) {
+        this.state[id].tomName = newElem
+        this.callback()
+    },
+    _updateTomCheck(newElem, id) {
+        this.state[id].tomCheck = newElem
         this.callback()
     },
     _updateEditorSurname(newElem, i, id) {
@@ -249,6 +303,15 @@ export let store = {
         else if (param.type === 'UPDATE-TYPE') {
             this._updateType(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-TOM-NUMBER') {
+            this._updateTomNumber(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-TOM-NAME') {
+            this._updateTomName(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-CHECK-TOM') {
+            this._updateTomCheck(param.newElem, param.id)
+        }
         else if (param.type === 'ADD-AUTHOR') {
             this._addAuthor(param.id)
         }
@@ -275,6 +338,12 @@ export let store = {
         }
         else if (param.type === 'CALLBACK') {
             this.callback()
+        }
+        else if (param.type === 'ADD-STATE') {
+            this._addState(param.index)
+        }
+        else if (param.type === 'DELETE-STATE') {
+            this._deleteState(param.index)
         }
     }
 }

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import './App.css'
 
-import {store} from './store'
+import { store } from './store'
 import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
 import FormBook from "./Components/FormBook/FormBook";
+import Selector from "./Components/Selector/Selector";
+
 
 class App extends Component {
   generate(): void {
@@ -19,9 +21,22 @@ class App extends Component {
   }
   changeSelect = React.createRef<HTMLSelectElement>();
   onChangeSelect = () => {
-   // store.updateType(this.changeSelect.current?.value)
+    // store.updateType(this.changeSelect.current?.value)
   }
 
+
+  addState = () => {
+    let param = {
+      type: 'ADD-STATE'
+    }
+    store.dispatch(param)
+  }
+  deleteState = () => {
+    let param = {
+      type: 'DELETE-STATE'
+    }
+    store.dispatch(param)
+  }
   render() {
     return (
       <div className="conteiner">
@@ -32,9 +47,12 @@ class App extends Component {
           <option value="4">4</option>
         </select> */}
         {
-          store.state.map(state => <FormBook state={state} dispatch={store.dispatch.bind(store)}/>)
+          store.state.map(state => <Selector state={state} dispatch={store.dispatch.bind(store)} check={store.state.length > 1} />)
         }
         
+        <button onClick={this.addState}>Add!</button>
+        <button onClick={this.deleteState}>Delete</button>
+        <br />
         <button onClick={this.generate}>Generate!</button>
       </div>
     );
