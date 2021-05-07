@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'book',
+        type: 'article-book',
 
         // Книги
         authorCheck: false,

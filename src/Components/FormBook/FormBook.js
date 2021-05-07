@@ -67,7 +67,7 @@ const FormBook = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='House' />
-            <input type="checkbox" ref={checkHouseRef} onChange={handleChangeHouse} />Была переиздана
+            {/* <input type="checkbox" ref={checkHouseRef} onChange={handleChangeHouse} />Была переиздана */}
             {/* <ReHouseForm state={props.state} dispatch={props.dispatch} check={props.state.houseCheck} /> */}
             <Field elem={props.state.year}
                 dispatch={props.dispatch}

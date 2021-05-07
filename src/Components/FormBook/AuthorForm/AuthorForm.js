@@ -1,5 +1,5 @@
 import React from 'react'
-import Author from '../../Author/Author';
+import Author from '../../CommonComponents/Author/Author';
 import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
 
 const AuthorForm = (props) => {
