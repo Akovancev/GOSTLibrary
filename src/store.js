@@ -7,7 +7,9 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'collection',
+        type: 'book',
+
+        // Книги
         authorCheck: false,
         titleCheck: false,
         houseCheck: false,
@@ -19,21 +21,36 @@ export let store = {
                 authorSurname: ''
             }
         ],
-        tomNunber: '',
-        tomName: '',
-        title: '',
-        titleInformation: '',
-        place: '',
-        replace: '',
-        publishingHouse: '',
-        republishingHouse: '',
-        year: '',
         editor: [],
         translator: [],
         collectives: [],
-        count: ''
+        title: '',
+        titleInformation: '',
+        place: '',
+        publishingHouse: '',
+        replace: '',
+        republishingHouse: '',
+        year: '',
+        count: '',
+        
+        // Многотомные издания
+        tomNumber: '',
+        tomName: '',
+
+        // Статьи
+        titleArticle: '',
+        numberArticle: '',
+        dateArticle: '',
+        authorArticle: [
+            {
+                id: 0,
+                authorIO: '',
+                authorSurname: ''
+            }
+        ]
     }],
 
+    
     _addState(index) {
         let i = this.state.length 
         let newElem = {
@@ -84,6 +101,14 @@ export let store = {
     _updateAuthorCheck(newElem, id) {
         this.state[id].authorCheck = newElem
         this.callback()
+    },
+    _updateAuthorSurnameArticle(newElem, i, id) {
+        this.state[id].authorArticle[i].authorSurname = newElem
+        this.callback()
+    },
+    _updateAuthorIOArticle(newElem, i, id) {
+        this.state[id].authorArticle[i].authorIO = newElem
+        this.callback()
     }, 
     _updateTitle(newElem, id) {
         this.state[id].title = newElem
@@ -93,12 +118,24 @@ export let store = {
         this.state[id].titleCheck = newElem
         this.callback()
     },
+    _updateTitleArticle(newElem, id) {
+        this.state[id].titleArticle = newElem
+        this.callback()
+    }, 
+    _updateNumberArticle(newElem, id) {
+        this.state[id].numberArticle = newElem
+        this.callback()
+    }, 
+    _updateDateArticle(newElem, id) {
+        this.state[id].dateArticle = newElem
+        this.callback()
+    },
     _updateInformation(newElem, id){
         this.state[id].titleInformation = newElem
         this.callback()
     },
     _updateTomNumber(newElem, id) {
-        this.state[id].tomNunber = newElem
+        this.state[id].tomNumber = newElem
         this.callback()
     },
     _updateTomName(newElem, id) {
@@ -178,6 +215,22 @@ export let store = {
         store.state[id].author.push(newElem)
         store.callback()
     },
+    _addAuthorArticle(id) {
+        let newId
+        if (store.state[id].authorArticle.length === 0){
+            newId = 0
+        }
+        else {
+            newId = store.state[id].authorArticle[store.state[id].authorArticle.length - 1].id + 1
+        }
+        let newElem = {
+            id: newId,
+            authorIO: '',
+            authorSurname: ''
+        }
+        store.state[id].authorArticle.push(newElem)
+        store.callback()
+    },
     _addEditor(id) {
         let newId
         if (store.state[id].editor.length === 0){
@@ -232,6 +285,12 @@ export let store = {
             store.callback()
         }
     },
+    _deleteAuthorArticle(id) {
+        if (store.state[id].authorArticle.length > 1) {
+            store.state[id].authorArticle.pop()
+            store.callback()
+        }
+    },
     _deleteEditor(id) {
         store.state[id].editor.pop()
         store.callback()
@@ -255,6 +314,12 @@ export let store = {
         else if (param.type === 'UPDATE-CHECK-AUTHOR') {
             this._updateAuthorCheck(param.newElem, param.id)            
         }
+        else if (param.type === 'UPDATE-AUTHOR-SURNAME-ARTICLE') {
+            this._updateAuthorSurnameArticle(param.newElem, param.i, param.id)
+        }
+        else if (param.type === 'UPDATE-AUTHOR-IO-ARTICLE') {
+            this._updateAuthorIOArticle(param.newElem, param.i, param.id)            
+        }
         else if (param.type === 'UPDATE-EDITOR-SURNAME') {
             this._updateEditorSurname(param.newElem, param.i, param.id)
         }
@@ -272,6 +337,15 @@ export let store = {
         }
         else if (param.type === 'UPDATE-TITLE') {
             this._updateTitle(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-TITLE-ARTICLE') {
+            this._updateTitleArticle(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-NUMBER-ARTICLE') {
+            this._updateNumberArticle(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-DATE-ARTICLE') {
+            this._updateDateArticle(param.newElem, param.id)
         }
         else if (param.type === 'UPDATE-CHECK-TITLE') {
             this._updateTitleCheck(param.newElem, param.id)            
@@ -315,6 +389,9 @@ export let store = {
         else if (param.type === 'ADD-AUTHOR') {
             this._addAuthor(param.id)
         }
+        else if (param.type === 'ADD-AUTHOR-ARTICLE') {
+            this._addAuthorArticle(param.id)
+        }
         else if (param.type === 'ADD-EDITOR') {
             this._addEditor(param.id)
         }
@@ -326,6 +403,9 @@ export let store = {
         }
         else if (param.type === 'DELETE-AUTHOR') {
             this._deleteAuthor(param.id)
+        }
+        else if (param.type === 'DELETE-AUTHOR-ARTICLE') {
+            this._deleteAuthorArticle(param.id)
         }
         else if (param.type === 'DELETE-EDITOR') {
             this._deleteEditor(param.id)

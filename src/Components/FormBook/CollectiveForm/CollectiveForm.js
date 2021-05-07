@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonCollective from './ButtonsCollective/ButtonCollective';
+import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
 import Collective from './Collectives/Collective';
 
 const CollectiveForm = (props) => {
@@ -7,7 +7,10 @@ const CollectiveForm = (props) => {
         <>
             <Collective state={props.state}
                 dispatch={props.dispatch} />
-            <ButtonCollective dispatch={props.dispatch} check={props.state.collectives.length > 0} state={props.state}/>
+            <ButtonsAddDelete dispatch={props.dispatch} 
+                    check={props.state.collectives.length > 0} 
+                    id={props.state.id}
+                    type='COLLECTIVE'/>
         </>
     )
 }

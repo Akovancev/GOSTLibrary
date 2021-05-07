@@ -21,6 +21,14 @@ const Field = (props) => {
     placeholder = 'Фамилия  автора'
     t = 'UPDATE-AUTHOR-SURNAME'
   }
+  else if (props.type === 'IO-Article') {
+    placeholder = 'Инициалы автора статьи'
+    t = 'UPDATE-AUTHOR-IO-ARTICLE'
+  }
+  else if (props.type === 'Surname-Article') {
+    placeholder = 'Фамилия  автора статьи'
+    t = 'UPDATE-AUTHOR-SURNAME-ARTICLE'
+  }
   else if (props.type === 'IO-E') {
     placeholder = 'Инициалы редактора'
     t = 'UPDATE-EDITOR-IO'
@@ -44,6 +52,10 @@ const Field = (props) => {
   else if (props.type === 'Title') {
     placeholder = 'Заглавие'
     t = 'UPDATE-TITLE'
+  }
+  else if (props.type === 'Title-Article') {
+    placeholder = 'Заглавие статьи'
+    t = 'UPDATE-TITLE-ARTICLE'
   }
   else if (props.type === 'Title-Information') {
     placeholder = 'Сведения о заглавии'

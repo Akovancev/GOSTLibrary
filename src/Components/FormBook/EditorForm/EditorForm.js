@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonEditor from './ButtonsEditor/ButtonsEditor';
+import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
 import Editor from './Editors/Editor';
 
 const EditorForm = (props) => {
@@ -7,7 +7,10 @@ const EditorForm = (props) => {
         <>
             <Editor state={props.state}
                 dispatch={props.dispatch} />
-            <ButtonEditor dispatch={props.dispatch} check={props.state.editor.length > 0} state={props.state}/>
+            <ButtonsAddDelete dispatch={props.dispatch}
+                check={props.state.editor.length > 0}
+                id={props.state.id}
+                type='EDITOR' />
         </>
     )
 }
