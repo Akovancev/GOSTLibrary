@@ -14,7 +14,14 @@ const Selector = (props) => {
         case 'article-book':
             return (
                 <>
-                    <FormArticle state={props.state} dispatch={props.dispatch} />
+                    <FormArticle state={props.state} dispatch={props.dispatch} type='BOOK' />
+                    <hr />
+                </>
+            )
+        case 'article-magazine':
+            return (
+                <>
+                    <FormArticle state={props.state} dispatch={props.dispatch} type='MAGAZINE'/>
                     <hr />
                 </>
             )

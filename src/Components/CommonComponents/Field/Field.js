@@ -49,8 +49,16 @@ const Field = (props) => {
     placeholder = 'Коллектив'
     t = 'UPDATE-COLLECTIVE'
   }
+  else if (props.type === 'Number') {
+    placeholder = 'Номер журнала'
+    t = 'UPDATE-UPDATE-NUMBER-ARTICLE'
+  }
   else if (props.type === 'Title') {
     placeholder = 'Заглавие'
+    t = 'UPDATE-TITLE'
+  }
+  else if (props.type === 'Title-Magazine') {
+    placeholder = 'Название журнала '
     t = 'UPDATE-TITLE'
   }
   else if (props.type === 'Title-Article') {

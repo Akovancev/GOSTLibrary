@@ -1,7 +1,7 @@
 import React from 'react'
 import Author from '../CommonComponents/Author/Author';
 import ButtonsAddDelete from '../ButtonsAddDelete/ButtonsAddDelete';
-import Field from '../Field/Field';
+import Field from '../CommonComponents/Field/Field';
 import AuthorForm from '../FormBook/AuthorForm/AuthorForm';
 import TitleInformation from '../FormBook/TitleInformation/TitleInformation';
 import EditorForm from '../FormBook/EditorForm/EditorForm';
@@ -46,15 +46,9 @@ const FormArticle = (props) => {
         }
         props.dispatch(param)
     }
-    return (
-        <>
-            <Field elem={props.state.titleArticle} dispatch={props.dispatch} index={props.state.id} type='Title-Article' />
-            <Author state={props.state.authorArticle} dispatch={props.dispatch} index={props.state.id} typeA='Surname-Article' typeB='IO-Article' />
-            <ButtonsAddDelete dispatch={props.dispatch}
-                check={props.state.authorArticle.length > 1}
-                id={props.state.id}
-                type='AUTHOR-ARTICLE' />
-
+    let Source
+    if (props.type === 'BOOK') {
+        Source = <>
             <AuthorForm state={props.state} dispatch={props.dispatch} check={props.state.authorCheck} />
             <input type="checkbox" ref={checkAuthorRef} onChange={handleChangeAuthor} />Без автора
             <Field elem={props.state.title}
@@ -82,6 +76,39 @@ const FormArticle = (props) => {
                 type='Year' />
             <input type="checkbox" ref={checkTomRef} onChange={handleChangeTom} />Добавить том
             <Tom state={props.state} dispatch={props.dispatch} check={props.state.tomCheck} />
+        </>
+    }
+    else if (props.type === 'MAGAZINE') {
+        Source = <>
+
+            <Field elem={props.state.title}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Title-Magazine' />
+            <Field elem={props.state.year}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Year' />
+            <Field elem={props.state.numberArticle}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Number' />
+            <Field elem={props.state.place}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Place' />
+        </>
+    }
+    return (
+        <>
+            <Field elem={props.state.titleArticle} dispatch={props.dispatch} index={props.state.id} type='Title-Article' />
+            <Author state={props.state.authorArticle} dispatch={props.dispatch} index={props.state.id} typeA='Surname-Article' typeB='IO-Article' />
+            <ButtonsAddDelete dispatch={props.dispatch}
+                check={props.state.authorArticle.length > 1}
+                id={props.state.id}
+                type='AUTHOR-ARTICLE' />
+
+            {Source}
             <Field elem={props.state.count}
                 dispatch={props.dispatch}
                 index={props.state.id}
