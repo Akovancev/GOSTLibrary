@@ -1,6 +1,6 @@
 import React from 'react'
 import Author from '../../CommonComponents/Author/Author';
-import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
+import ButtonsAddDelete from '../../CommonComponents/ButtonsAddDelete/ButtonsAddDelete';
 
 const AuthorForm = (props) => {
     if (!props.check)

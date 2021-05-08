@@ -50,24 +50,48 @@ const Field = (props) => {
     t = 'UPDATE-COLLECTIVE'
   }
   else if (props.type === 'Number') {
-    placeholder = 'Номер журнала'
+    placeholder = 'Номер журнала/газеты'
     t = 'UPDATE-UPDATE-NUMBER-ARTICLE'
+  }
+  else if (props.type === 'Date') {
+    placeholder = 'Число и месяц выпуска газеты'
+    t = 'UPDATE-DATE-ARTICLE'
+  }
+  else if (props.type === 'Date-Conference') {
+    placeholder = 'Дата конференции'
+    t = 'UPDATE-DATE-CONFERENCE'
+  }
+  else if (props.type === 'City-Conference') {
+    placeholder = 'Город проведения конференции'
+    t = 'UPDATE-CITY-CONFERENCE'
   }
   else if (props.type === 'Title') {
     placeholder = 'Заглавие'
     t = 'UPDATE-TITLE'
   }
+  else if (props.type === 'Title-Newspaper') {
+    placeholder = 'Название газеты'
+    t = 'UPDATE-TITLE-ARTICLE'
+  }
   else if (props.type === 'Title-Magazine') {
     placeholder = 'Название журнала '
-    t = 'UPDATE-TITLE'
+    t = 'UPDATE-TITLE-ARTICLE'
   }
   else if (props.type === 'Title-Article') {
     placeholder = 'Заглавие статьи'
     t = 'UPDATE-TITLE-ARTICLE'
   }
+  else if (props.type === 'Title-Conference') {
+    placeholder = 'Название конференции'
+    t = 'UPDATE-TITLE-CONFERENCE'
+  }
   else if (props.type === 'Title-Information') {
     placeholder = 'Сведения о заглавии'
     t = 'UPDATE-INFORMATION'
+  }
+  else if (props.type === 'Information-Conference') {
+    placeholder = 'Сведения о конференции'
+    t = 'UPDATE-INFORMATION-CONFERENCE'
   }
   else if (props.type === 'Place') {
     placeholder = 'Место издания'

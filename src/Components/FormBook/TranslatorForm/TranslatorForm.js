@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
+import ButtonsAddDelete from '../../CommonComponents/ButtonsAddDelete/ButtonsAddDelete';
 import Translator from './Translators/Translator';
 
 const TranslatorForm = (props) => {

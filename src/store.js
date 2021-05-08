@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'article-magazine',
+        type: 'conference',
 
         // Книги
         authorCheck: false,
@@ -47,7 +47,11 @@ export let store = {
                 authorIO: '',
                 authorSurname: ''
             }
-        ]
+        ],
+
+        // Конференции
+        dateConference: '',
+        cityConference: ''
     }],
 
     
@@ -112,6 +116,14 @@ export let store = {
     }, 
     _updateTitle(newElem, id) {
         this.state[id].title = newElem
+        this.callback()
+    },
+    _updateDateConference(newElem, id) {
+        this.state[id].dateConference = newElem
+        this.callback()
+    },
+    _updateCityConference(newElem, id) {
+        this.state[id].cityConference = newElem
         this.callback()
     },
     _updateTitleCheck(newElem, id) {
@@ -305,6 +317,8 @@ export let store = {
     },
 
     dispatch(param) {
+
+        // Update
         if (param.type === 'UPDATE-AUTHOR-SURNAME') {
             this._updateAuthorSurname(param.newElem, param.i, param.id)
         }
@@ -347,6 +361,12 @@ export let store = {
         else if (param.type === 'UPDATE-DATE-ARTICLE') {
             this._updateDateArticle(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-DATE-CONFERENCE') {
+            this._updateDateConference(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-CITY-CONFERENCE') {
+            this._updateCityConference(param.newElem, param.id)
+        }
         else if (param.type === 'UPDATE-CHECK-TITLE') {
             this._updateTitleCheck(param.newElem, param.id)            
         }
@@ -374,9 +394,6 @@ export let store = {
         else if (param.type === 'UPDATE-REPUBLISHING') {
             this._updateRePublishingHouse(param.newElem, param.id)
         }
-        else if (param.type === 'UPDATE-TYPE') {
-            this._updateType(param.newElem, param.id)
-        }
         else if (param.type === 'UPDATE-TOM-NUMBER') {
             this._updateTomNumber(param.newElem, param.id)
         }
@@ -386,6 +403,8 @@ export let store = {
         else if (param.type === 'UPDATE-CHECK-TOM') {
             this._updateTomCheck(param.newElem, param.id)
         }
+
+        // Add
         else if (param.type === 'ADD-AUTHOR') {
             this._addAuthor(param.id)
         }
@@ -401,6 +420,8 @@ export let store = {
         else if (param.type === 'ADD-COLLECTIVE') {
             this._addCollective(param.id)
         }
+
+        // Delete
         else if (param.type === 'DELETE-AUTHOR') {
             this._deleteAuthor(param.id)
         }
@@ -416,14 +437,16 @@ export let store = {
         else if (param.type === 'DELETE-COLLECTIVE') {
             this._deleteCollective(param.id)
         }
-        else if (param.type === 'CALLBACK') {
-            this.callback()
-        }
+
+        // State
         else if (param.type === 'ADD-STATE') {
             this._addState(param.index)
         }
         else if (param.type === 'DELETE-STATE') {
             this._deleteState(param.index)
+        }
+        else if (param.type === 'UPDATE-TYPE') {
+            this._updateType(param.newElem, param.id)
         }
     }
 }

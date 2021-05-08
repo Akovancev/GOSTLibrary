@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonsAddDelete from '../../ButtonsAddDelete/ButtonsAddDelete';
+import ButtonsAddDelete from '../../CommonComponents/ButtonsAddDelete/ButtonsAddDelete';
 import Collective from './Collectives/Collective';
 
 const CollectiveForm = (props) => {

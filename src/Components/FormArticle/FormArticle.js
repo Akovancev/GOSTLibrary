@@ -1,6 +1,5 @@
 import React from 'react'
 import Author from '../CommonComponents/Author/Author';
-import ButtonsAddDelete from '../ButtonsAddDelete/ButtonsAddDelete';
 import Field from '../CommonComponents/Field/Field';
 import AuthorForm from '../FormBook/AuthorForm/AuthorForm';
 import TitleInformation from '../FormBook/TitleInformation/TitleInformation';
@@ -8,6 +7,7 @@ import EditorForm from '../FormBook/EditorForm/EditorForm';
 import TranslatorForm from '../FormBook/TranslatorForm/TranslatorForm';
 import CollectiveForm from '../FormBook/CollectiveForm/CollectiveForm';
 import Tom from '../FormBook/TomForm/TomForm';
+import ButtonsAddDelete from '../CommonComponents/ButtonsAddDelete/ButtonsAddDelete';
 
 const FormArticle = (props) => {
     let checkAuthorRef = React.createRef()
@@ -80,7 +80,6 @@ const FormArticle = (props) => {
     }
     else if (props.type === 'MAGAZINE') {
         Source = <>
-
             <Field elem={props.state.title}
                 dispatch={props.dispatch}
                 index={props.state.id}
@@ -97,6 +96,26 @@ const FormArticle = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Place' />
+        </>
+    }
+    else if (props.type === 'NEWSPAPER') {
+        Source = <>
+            <Field elem={props.state.title}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Title-Newspaper' />
+            <Field elem={props.state.year}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Year' />
+            <Field elem={props.state.dateArticle}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Date' />
+            <Field elem={props.state.numberArticle}
+                dispatch={props.dispatch}
+                index={props.state.id}
+                type='Number' />
         </>
     }
     return (
