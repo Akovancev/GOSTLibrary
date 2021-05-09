@@ -61,6 +61,10 @@ const Field = (props) => {
     placeholder = 'Дата конференции'
     t = 'UPDATE-DATE-CONFERENCE'
   }
+  else if (props.type === 'Date-Standart') {
+    placeholder = 'Дата принятия документа'
+    t = 'UPDATE-DATE-STANDART'
+  }
   else if (props.type === 'City-Conference') {
     placeholder = 'Город проведения конференции'
     t = 'UPDATE-CITY-CONFERENCE'
@@ -68,6 +72,10 @@ const Field = (props) => {
   else if (props.type === 'Title') {
     placeholder = 'Заглавие'
     t = 'UPDATE-TITLE'
+  }
+  else if (props.type === 'Title-Standart-Before') {
+    placeholder = 'Обозначение ранее дествующего документа'
+    t = 'UPDATE-TITLE-BEFORE'
   }
   else if (props.type === 'Title-Newspaper') {
     placeholder = 'Название газеты'
@@ -83,7 +91,7 @@ const Field = (props) => {
   }
   else if (props.type === 'Title-Conference') {
     placeholder = 'Название конференции'
-    t = 'UPDATE-TITLE-CONFERENCE'
+    t = 'UPDATE-TITLE'
   }
   else if (props.type === 'Title-Information') {
     placeholder = 'Сведения о заглавии'
@@ -91,7 +99,7 @@ const Field = (props) => {
   }
   else if (props.type === 'Information-Conference') {
     placeholder = 'Сведения о конференции'
-    t = 'UPDATE-INFORMATION-CONFERENCE'
+    t = 'UPDATE-INFORMATION'
   }
   else if (props.type === 'Place') {
     placeholder = 'Место издания'

@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'conference',
+        type: 'standart',
 
         // Книги
         authorCheck: false,
@@ -51,7 +51,11 @@ export let store = {
 
         // Конференции
         dateConference: '',
-        cityConference: ''
+        cityConference: '',
+
+        // ГОСТы и стандарты
+        dateStandart: '',
+        titleStandartBefore: ''
     }],
 
     
@@ -116,6 +120,14 @@ export let store = {
     }, 
     _updateTitle(newElem, id) {
         this.state[id].title = newElem
+        this.callback()
+    },
+    _updateTitleBefore(newElem, id) {
+        this.state[id].titleStandartBefore = newElem
+        this.callback()
+    },
+    _updateDateStandart(newElem, id) {
+        this.state[id].dateStandart = newElem
         this.callback()
     },
     _updateDateConference(newElem, id) {
@@ -355,11 +367,17 @@ export let store = {
         else if (param.type === 'UPDATE-TITLE-ARTICLE') {
             this._updateTitleArticle(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-TITLE-BEFORE') {
+            this._updateTitleBefore(param.newElem, param.id)
+        }
         else if (param.type === 'UPDATE-NUMBER-ARTICLE') {
             this._updateNumberArticle(param.newElem, param.id)
         }
         else if (param.type === 'UPDATE-DATE-ARTICLE') {
             this._updateDateArticle(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-DATE-STANDART') {
+            this._updateDateStandart(param.newElem, param.id)
         }
         else if (param.type === 'UPDATE-DATE-CONFERENCE') {
             this._updateDateConference(param.newElem, param.id)
