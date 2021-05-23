@@ -51,7 +51,7 @@ const Field = (props) => {
   }
   else if (props.type === 'Number') {
     placeholder = 'Номер журнала/газеты'
-    t = 'UPDATE-UPDATE-NUMBER-ARTICLE'
+    t = 'UPDATE-NUMBER-ARTICLE'
   }
   else if (props.type === 'URL') {
     placeholder = 'URL адрес'
@@ -91,11 +91,11 @@ const Field = (props) => {
   }
   else if (props.type === 'Title-Newspaper') {
     placeholder = 'Название газеты'
-    t = 'UPDATE-TITLE-ARTICLE'
+    t = 'UPDATE-TITLE'
   }
   else if (props.type === 'Title-Magazine') {
     placeholder = 'Название журнала '
-    t = 'UPDATE-TITLE-ARTICLE'
+    t = 'UPDATE-TITLE'
   }
   else if (props.type === 'Title-Article') {
     placeholder = 'Заглавие статьи'

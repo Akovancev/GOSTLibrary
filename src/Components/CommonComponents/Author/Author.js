@@ -6,8 +6,8 @@ const Author = (props) => {
     <div>
       {props.state.map(p => 
       <div>
-        <Field elem={p.authorSurname} dispatch={props.dispatch} id={p.id} type={props.typeA} index={props.id}/>
-        <Field elem={p.authorIO} dispatch={props.dispatch} id={p.id} type={props.typeB} index={props.id}/>
+        <Field elem={p.authorSurname} dispatch={props.dispatch} id={p.id} type={props.typeA} index={props.index}/>
+        <Field elem={p.authorIO} dispatch={props.dispatch} id={p.id} type={props.typeB} index={props.index}/>
       </div>
       )}
     </div>

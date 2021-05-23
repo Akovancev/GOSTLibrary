@@ -19,33 +19,11 @@ class App extends Component {
       console.log("Document created successfully");
     });
   }
-  changeSelect = React.createRef<HTMLSelectElement>();
-  onChangeSelect = () => {
-    // store.updateType(this.changeSelect.current?.value)
-  }
 
 
-  addState = () => {
-    let param = {
-      type: 'ADD-STATE'
-    }
-    store.dispatch(param)
-  }
-  deleteState = () => {
-    let param = {
-      type: 'DELETE-STATE'
-    }
-    store.dispatch(param)
-  }
   render() {
     return (
       <div className="conteiner">
-        {/* <select onChange={this.onChangeSelect} ref={this.changeSelect}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select> */}
         {
           store.state.map(state => <Selector state={state} dispatch={store.dispatch.bind(store)} check={store.state.length > 1} />)
         }

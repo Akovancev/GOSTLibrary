@@ -8,7 +8,7 @@ const AuthorForm = (props) => {
         <>
             <Author state={props.state.author}
                 dispatch={props.dispatch}
-                id={props.state.id}
+                index={props.state.id}
                 typeA='Surname-A'
                 typeB='IO-A'/>
             <ButtonsAddDelete dispatch={props.dispatch} 

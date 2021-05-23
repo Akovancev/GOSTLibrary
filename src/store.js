@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'site',
+        type: 'book',
 
         // Книги
         authorCheck: false,
@@ -73,7 +73,9 @@ export let store = {
         let i = this.state.length 
         let newElem = {
             id: i,
-            type: 'book',
+            type: 'site',
+    
+            // Книги
             authorCheck: false,
             titleCheck: false,
             houseCheck: false,
@@ -85,19 +87,35 @@ export let store = {
                     authorSurname: ''
                 }
             ],
-            tomNunber: '',
-            tomName: '',
-            title: '',
-            titleInformation: '',
-            place: '',
-            replace: '',
-            publishingHouse: '',
-            republishingHouse: '',
-            year: '',
             editor: [],
             translator: [],
             collectives: [],
-            count: ''
+            title: '',
+            titleInformation: '',
+            place: '',
+            publishingHouse: '',
+            replace: '',
+            republishingHouse: '',
+            year: '',
+            count: '',
+            tomNumber: '',
+            tomName: '',
+            titleArticle: '',
+            numberArticle: '',
+            dateArticle: '',
+            authorArticle: [
+                {
+                    id: 0,
+                    authorIO: '',
+                    authorSurname: ''
+                }
+            ],
+            dateConference: '',
+            cityConference: '',
+            dateStandart: '',
+            titleStandartBefore: '',
+            URL: '',
+            dateUsing: ''
         }
         this.state.push(newElem)
         this.callback()
