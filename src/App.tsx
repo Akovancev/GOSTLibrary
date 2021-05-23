@@ -6,6 +6,7 @@ import { saveAs } from "file-saver";
 import { Packer } from "docx";
 import { DocumentCreator } from "./generator";
 import Selector from "./Components/Selector/Selector";
+import ButtonsAddDelete from "./Components/CommonComponents/ButtonsAddDelete/ButtonsAddDelete";
 
 
 class App extends Component {
@@ -49,8 +50,9 @@ class App extends Component {
           store.state.map(state => <Selector state={state} dispatch={store.dispatch.bind(store)} check={store.state.length > 1} />)
         }
         
-        <button onClick={this.addState}>Add!</button>
-        <button onClick={this.deleteState}>Delete</button>
+        <ButtonsAddDelete dispatch={store.dispatch.bind(store)} 
+                    check={store.state.length > 1} 
+                    type='STATE' />
         <br />
         <button onClick={this.generate}>Generate!</button>
       </div>

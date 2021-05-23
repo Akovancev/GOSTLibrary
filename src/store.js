@@ -7,7 +7,7 @@ export let store = {
     },
     state : [{
         id: 0,
-        type: 'standart',
+        type: 'site',
 
         // Книги
         authorCheck: false,
@@ -55,7 +55,17 @@ export let store = {
 
         // ГОСТы и стандарты
         dateStandart: '',
-        titleStandartBefore: ''
+        titleStandartBefore: '',
+
+        // // Диссертации
+        // FIO: '',
+        // countDiff: '',
+        // speciality: '',
+        // placeDefence: ''
+
+        // Электронные ресурсы
+        URL: '',
+        dateUsing: ''
     }],
 
     
@@ -98,6 +108,14 @@ export let store = {
         this.callback()
     },
 
+    _updateURL(newElem, id) {
+        this.state[id].URL = newElem
+        this.callback()
+    },
+    _updateDateUsing(newElem, id) {
+        this.state[id].dateUsing = newElem
+        this.callback()
+    },
     _updateAuthorSurname(newElem, i, id) {
         this.state[id].author[i].authorSurname = newElem
         this.callback()
@@ -360,6 +378,12 @@ export let store = {
         }
         else if (param.type === 'UPDATE-COLLECTIVE') {
             this._updateCollective(param.newElem, param.i, param.id)
+        }
+        else if (param.type === 'UPDATE-URL') {
+            this._updateURL(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-DATE-USING') {
+            this._updateDateUsing(param.newElem, param.id)
         }
         else if (param.type === 'UPDATE-TITLE') {
             this._updateTitle(param.newElem, param.id)

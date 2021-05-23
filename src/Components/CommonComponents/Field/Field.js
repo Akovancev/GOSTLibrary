@@ -53,9 +53,17 @@ const Field = (props) => {
     placeholder = 'Номер журнала/газеты'
     t = 'UPDATE-UPDATE-NUMBER-ARTICLE'
   }
+  else if (props.type === 'URL') {
+    placeholder = 'URL адрес'
+    t = 'UPDATE-URL'
+  }
   else if (props.type === 'Date') {
     placeholder = 'Число и месяц выпуска газеты'
     t = 'UPDATE-DATE-ARTICLE'
+  }
+  else if (props.type === 'Date-Using') {
+    placeholder = 'Дата обращения к сайту'
+    t = 'UPDATE-DATE-USING'
   }
   else if (props.type === 'Date-Conference') {
     placeholder = 'Дата конференции'
@@ -71,6 +79,10 @@ const Field = (props) => {
   }
   else if (props.type === 'Title') {
     placeholder = 'Заглавие'
+    t = 'UPDATE-TITLE'
+  }
+  else if (props.type === 'Title-Site') {
+    placeholder = 'Заглавие сайта'
     t = 'UPDATE-TITLE'
   }
   else if (props.type === 'Title-Standart-Before') {
@@ -95,6 +107,10 @@ const Field = (props) => {
   }
   else if (props.type === 'Title-Information') {
     placeholder = 'Сведения о заглавии'
+    t = 'UPDATE-INFORMATION'
+  }
+  else if (props.type === 'Title-Site-Information') {
+    placeholder = 'Сведения о сайте'
     t = 'UPDATE-INFORMATION'
   }
   else if (props.type === 'Information-Conference') {

@@ -3,6 +3,8 @@ import FormBook from '../FormBook/FormBook';
 import FormArticle from '../FormArticle/FormArticle';
 import FormConference from '../FormConference/FormConference';
 import FormStandart from '../FormStandart/FormStandart';
+import FormDissertation from '../FormDissertation/FormDissertation';
+import FormSite from '../FormSite/FormSite';
 
 const Selector = (props) => {
     switch (props.state.type) {
@@ -45,6 +47,20 @@ const Selector = (props) => {
             return (
                 <>
                     <FormStandart state={props.state} dispatch={props.dispatch} />
+                    <hr />
+                </>
+            )
+        // case 'dissertation':
+        //     return (
+        //         <>
+        //             <FormDissertation state={props.state} dispatch={props.dispatch} />
+        //             <hr />
+        //         </>
+        //     )
+        case 'site':
+            return (
+                <>
+                    <FormSite state={props.state} dispatch={props.dispatch} />
                     <hr />
                 </>
             )
