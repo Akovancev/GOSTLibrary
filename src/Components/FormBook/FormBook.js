@@ -45,6 +45,12 @@ const FormBook = (props) => {
             newElem: checkTomRef.current.checked
         }
         props.dispatch(param)
+        param = {
+            type: 'UPDATE-CHECK-TOM-NUMBER',
+            id: props.state.id,
+            newElem: checkTomRef.current.checked
+        }
+        props.dispatch(param)
     }
     return (
         <>
@@ -77,7 +83,7 @@ const FormBook = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Count' />
-            <input type="checkbox" ref={checkTomRef} onChange={handleChangeTom} />Добавить том
+            <input type="checkbox" ref={checkTomRef} onChange={handleChangeTom} />Многотомное издание
             <Tom state={props.state} dispatch={props.dispatch} check={props.state.tomCheck} />
         </>
     )

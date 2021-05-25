@@ -149,6 +149,10 @@ const Field = (props) => {
     placeholder = 'Номер тома'
     t = 'UPDATE-TOM-NUMBER'
   }
+  else if (props.type === 'T-Count') {
+    placeholder = 'Общее количество томов'
+    t = 'UPDATE-TOM-COUNT'
+  }
   return (
     <input type="text" placeholder={placeholder}
     value={props.elem} 

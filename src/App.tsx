@@ -27,7 +27,6 @@ class App extends Component {
         {
           store.state.map(state => <Selector state={state} dispatch={store.dispatch.bind(store)} check={store.state.length > 1} />)
         }
-        
         <ButtonsAddDelete dispatch={store.dispatch.bind(store)} 
                     check={store.state.length > 1} 
                     type='STATE' />

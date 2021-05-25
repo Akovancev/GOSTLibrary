@@ -14,6 +14,7 @@ export let store = {
         titleCheck: false,
         houseCheck: false,
         tomCheck: false,
+        tomCheckNumber: false,
         author: [
             {
                 id: 0,
@@ -36,6 +37,7 @@ export let store = {
         // Многотомные издания
         tomNumber: '',
         tomName: '',
+        tomCount: '',
 
         // Статьи
         titleArticle: '',
@@ -73,7 +75,7 @@ export let store = {
         let i = this.state.length 
         let newElem = {
             id: i,
-            type: 'site',
+            type: 'book',
     
             // Книги
             authorCheck: false,
@@ -198,12 +200,20 @@ export let store = {
         this.state[id].tomNumber = newElem
         this.callback()
     },
+    _updateTomCount(newElem, id) {
+        this.state[id].tomCount = newElem
+        this.callback()
+    },
     _updateTomName(newElem, id) {
         this.state[id].tomName = newElem
         this.callback()
     },
     _updateTomCheck(newElem, id) {
         this.state[id].tomCheck = newElem
+        this.callback()
+    },
+    _updateTomCheckNumber(newElem, id) {
+        this.state[id].tomCheckNumber = newElem
         this.callback()
     },
     _updateEditorSurname(newElem, i, id) {
@@ -460,8 +470,14 @@ export let store = {
         else if (param.type === 'UPDATE-TOM-NAME') {
             this._updateTomName(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-TOM-COUNT') {
+            this._updateTomCount(param.newElem, param.id)
+        }
         else if (param.type === 'UPDATE-CHECK-TOM') {
             this._updateTomCheck(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-CHECK-TOM-NUMBER') {
+            this._updateTomCheckNumber(param.newElem, param.id)
         }
 
         // Add
