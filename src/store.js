@@ -68,6 +68,7 @@ export let store = {
 
         // Электронные ресурсы
         placeSiteCheck: false,
+        yearSiteCheck: false,
         URL: '',
         dateUsing: ''
     }],
@@ -136,6 +137,10 @@ export let store = {
     },
     _updatePlaceSiteCheck(newElem, id) {
         this.state[id].placeSiteCheck = newElem
+        this.callback()
+    },
+    _updateYearSiteCheck(newElem, id) {
+        this.state[id].yearSiteCheck = newElem
         this.callback()
     },
     _updateDateUsing(newElem, id) {
@@ -498,6 +503,10 @@ export let store = {
         else if (param.type === 'UPDATE-CHECK-PLACE-SITE') {
             this._updatePlaceSiteCheck(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-CHECK-YEAR-SITE') {
+            this._updateYearSiteCheck(param.newElem, param.id)
+        }
+
 
 
         // Add

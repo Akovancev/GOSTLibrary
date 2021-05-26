@@ -1,14 +1,24 @@
 import React from 'react'
 import Field from '../CommonComponents/Field/Field';
 import PlaceSite from './PlaceSite/PlaceSite';
+import YearSite from './YearSite/YearSite';
 
 const FormSite = (props) => {
-    let check = React.createRef()
-    const handleChange = () => {
+    let checkPlace = React.createRef()
+    let checkYear = React.createRef()
+    const handleChangePlace = () => {
         let param = {
             type: 'UPDATE-CHECK-PLACE-SITE',
             id: props.state.id,
-            newElem: check.current.checked
+            newElem: checkPlace.current.checked
+        }
+        props.dispatch(param)
+    }
+    const handleChangeYear = () => {
+        let param = {
+            type: 'UPDATE-CHECK-YEAR-SITE',
+            id: props.state.id,
+            newElem: checkYear.current.checked
         }
         props.dispatch(param)
     }
@@ -30,12 +40,10 @@ const FormSite = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Date-Using' />
-            <input type="checkbox" ref={check} onChange={handleChange} />Указать город
+            <input type="checkbox" ref={checkPlace} onChange={handleChangePlace} />Указать город
             <PlaceSite state={props.state} dispatch={props.dispatch} check={props.state.placeSiteCheck} />
-            <Field elem={props.state.year}
-                dispatch={props.dispatch}
-                index={props.state.id}
-                type='Year' />
+            <input type="checkbox" ref={checkYear} onChange={handleChangeYear} />Указать год
+            <YearSite state={props.state} dispatch={props.dispatch} check={props.state.yearSiteCheck} />
         </>
     )
 }
