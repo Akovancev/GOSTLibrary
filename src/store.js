@@ -67,6 +67,7 @@ export let store = {
         // placeDefence: ''
 
         // Электронные ресурсы
+        placeSiteCheck: false,
         URL: '',
         dateUsing: ''
     }],
@@ -131,6 +132,10 @@ export let store = {
 
     _updateURL(newElem, id) {
         this.state[id].URL = newElem
+        this.callback()
+    },
+    _updatePlaceSiteCheck(newElem, id) {
+        this.state[id].placeSiteCheck = newElem
         this.callback()
     },
     _updateDateUsing(newElem, id) {
@@ -490,6 +495,10 @@ export let store = {
         else if (param.type === 'UPDATE-CHECK-TOM-NUMBER') {
             this._updateTomCheckNumber(param.newElem, param.id)
         }
+        else if (param.type === 'UPDATE-CHECK-PLACE-SITE') {
+            this._updatePlaceSiteCheck(param.newElem, param.id)
+        }
+
 
         // Add
         else if (param.type === 'ADD-AUTHOR') {

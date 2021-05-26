@@ -1,11 +1,13 @@
 import React from 'react'
 import Field from '../CommonComponents/Field/Field';
+import EditorForm from '../FormBook/EditorForm/EditorForm';
 
 const FormConference = (props) => {
     return (
         <>
             <Field elem={props.state.title} dispatch={props.dispatch} index={props.state.id} type='Title-Conference' />
-            <Field elem={props.state.titleInformation} dispatch={props.dispatch} index={props.state.id} type='Information-Conference' />
+            <Field elem={props.state.titleInformation} dispatch={props.dispatch} index={props.state.id} type='Information-Conference' />            
+            <EditorForm state={props.state} dispatch={props.dispatch} />
             <Field elem={props.state.cityConference} dispatch={props.dispatch} index={props.state.id} type='City-Conference' />
             <Field elem={props.state.dateConference} dispatch={props.dispatch} index={props.state.id} type='Date-Conference' />
             <Field elem={props.state.place}

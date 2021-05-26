@@ -122,6 +122,31 @@ export class DocumentCreator {
       }
       text += '. - ' + ' С. '+ props.count + '.'
     }
+    if (props.type === 'conference') {
+      text += props.title + ' '
+      text += ': ' + props.titleInformation
+      text += ', ' + props.cityConference
+      text += ', ' + props.dateConference
+      if (props.editor.length > 0) {
+        text += ' / ' + documentCreator.createTextEditor(props.editor)
+      }
+      text += '. - ' + props.place
+      text += ' : ' + props.publishingHouse
+      text += ', ' + props.year
+      text += '. - ' + props.count + ' c.'
+    }
+    if (props.type === 'standart') {
+    }
+    if (props.type === 'site') {
+      text += props.title + ' : ' + props.titleInformation
+      if (props.placeSiteCheck) {
+        text += '. - ' + props.place
+      }
+      text += '. - ' + props.year
+      text += '. - URL: ' + props.URL
+      text += ' (дата обращения:' + props.dateUsing + ').'
+      
+    }
     return new Paragraph({
       children: [new TextRun({
         text: text,

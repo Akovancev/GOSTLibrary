@@ -1,7 +1,17 @@
 import React from 'react'
 import Field from '../CommonComponents/Field/Field';
+import PlaceSite from './PlaceSite/PlaceSite';
 
 const FormSite = (props) => {
+    let check = React.createRef()
+    const handleChange = () => {
+        let param = {
+            type: 'UPDATE-CHECK-PLACE-SITE',
+            id: props.state.id,
+            newElem: check.current.checked
+        }
+        props.dispatch(param)
+    }
     return (
         <>
             <Field elem={props.state.title}
@@ -20,10 +30,8 @@ const FormSite = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Date-Using' />
-            <Field elem={props.state.place}
-                dispatch={props.dispatch}
-                index={props.state.id}
-                type='Place' />
+            <input type="checkbox" ref={check} onChange={handleChange} />Указать город
+            <PlaceSite state={props.state} dispatch={props.dispatch} check={props.state.placeSiteCheck} />
             <Field elem={props.state.year}
                 dispatch={props.dispatch}
                 index={props.state.id}
