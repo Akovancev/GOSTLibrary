@@ -13,8 +13,6 @@ export let store = {
         authorCheck: false,
         titleCheck: false,
         houseCheck: false,
-        tomCheck: false,
-        tomCheckNumber: false,
         author: [
             {
                 id: 0,
@@ -35,11 +33,14 @@ export let store = {
         count: '',
         
         // Многотомные издания
+        tomCheck: false,
+        tomCheckNumber: false,
         tomNumber: '',
         tomName: '',
         tomCount: '',
 
         // Статьи
+        numberArticleCheck: false,
         titleArticle: '',
         numberArticle: '',
         dateArticle: '',
@@ -188,6 +189,10 @@ export let store = {
         this.state[id].numberArticle = newElem
         this.callback()
     }, 
+    _updateNumberArticleCheck(newElem, id) {
+        this.state[id].numberArticleCheck = newElem
+        this.callback()
+    }, 
     _updateDateArticle(newElem, id) {
         this.state[id].dateArticle = newElem
         this.callback()
@@ -210,6 +215,9 @@ export let store = {
     },
     _updateTomCheck(newElem, id) {
         this.state[id].tomCheck = newElem
+        if (newElem === false) {
+            this.state[id].tomCheckNumber = newElem
+        }
         this.callback()
     },
     _updateTomCheckNumber(newElem, id) {
@@ -424,6 +432,9 @@ export let store = {
         }
         else if (param.type === 'UPDATE-NUMBER-ARTICLE') {
             this._updateNumberArticle(param.newElem, param.id)
+        }
+        else if (param.type === 'UPDATE-NUMBER-ARTICLE-CHECK') {
+            this._updateNumberArticleCheck(param.newElem, param.id)
         }
         else if (param.type === 'UPDATE-DATE-ARTICLE') {
             this._updateDateArticle(param.newElem, param.id)

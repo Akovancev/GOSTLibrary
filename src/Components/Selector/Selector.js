@@ -7,6 +7,7 @@ import FormDissertation from '../FormDissertation/FormDissertation';
 import FormSite from '../FormSite/FormSite';
 import TypeSelector from '../TypeSelector/TypeSelector';
 
+
 const Selector = (props) => {
     switch (props.state.type) {
         case 'book':

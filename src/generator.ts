@@ -59,15 +59,68 @@ export class DocumentCreator {
       }
       text += '/ ' + documentCreator.createTextAuthor(props.author)
       if (props.editor.length > 0) {
-        text += ' ; ' +  documentCreator.createTextEditor(props.editor)
+        text += ' ; ' + documentCreator.createTextEditor(props.editor)
       }
       if (props.translator.length > 0) {
-        text += ' ; ' +  documentCreator.createTextTranslator(props.translator)
+        text += ' ; ' + documentCreator.createTextTranslator(props.translator)
       }
       text += '. - ' + props.place
       text += ' : ' + props.publishingHouse
       text += ', ' + props.year
       text += '. - ' + props.count + ' c.'
+    }
+    if (props.type === 'article-book') {
+      text += props.authorArticle[0].authorSurname + ' ' + props.authorArticle[0].authorIO + ' '
+      text += props.titleArticle + ' '
+      text += '/ ' + documentCreator.createTextAuthor(props.authorArticle) + ' // '
+      if (!props.authorCheck && props.author.length <= 3) {
+        text += props.author[0].authorSurname + ' ' + props.author[0].authorIO + ' '
+      }
+      text += props.title + ' '
+      if (props.tomCheck) {
+        text += ': в ' + props.tomCount + ' т. '
+      }
+      if (props.tomCheckNumber) {
+        text += 'Т. ' + props.tomNumber + ' '
+      }
+      if (props.tomName != '') {
+        text += props.tomName + ' '
+      }
+      if (!props.titleCheck) {
+        text += ': ' + props.titleInformation + ' '
+      }
+      text += '/ ' + documentCreator.createTextAuthor(props.author)
+      if (props.editor.length > 0) {
+        text += ' ; ' + documentCreator.createTextEditor(props.editor)
+      }
+      if (props.translator.length > 0) {
+        text += ' ; ' + documentCreator.createTextTranslator(props.translator)
+      }
+      text += '. - ' + props.place
+      text += ' : ' + props.publishingHouse
+      text += ', ' + props.year
+      text += '. - ' + ' С. '+ props.count + '.'
+    }
+    if (props.type === 'article-magazine') {
+      text += props.authorArticle[0].authorSurname + ' ' + props.authorArticle[0].authorIO + ' '
+      text += props.titleArticle + ' '
+      text += '/ ' + documentCreator.createTextAuthor(props.authorArticle) + ' // '
+      text += props.title
+      text += '. - ' + props.year
+      text += '. - ' + props.numberArticle
+      text += '. - ' + ' С. '+ props.count + '.'
+    }
+    if (props.type === 'article-newspaper') {
+      text += props.authorArticle[0].authorSurname + ' ' + props.authorArticle[0].authorIO + ' '
+      text += props.titleArticle + ' '
+      text += '/ ' + documentCreator.createTextAuthor(props.authorArticle) + ' // '
+      text += props.title
+      text += '. - ' + props.year
+      text += '. - ' + props.dateArticle
+      if (!props.numberCheck) {
+        text += ' (' + props.numberArticle + ')'
+      }
+      text += '. - ' + ' С. '+ props.count + '.'
     }
     return new Paragraph({
       children: [new TextRun({

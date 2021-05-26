@@ -8,12 +8,22 @@ import TranslatorForm from '../FormBook/TranslatorForm/TranslatorForm';
 import CollectiveForm from '../FormBook/CollectiveForm/CollectiveForm';
 import Tom from '../FormBook/TomForm/TomForm';
 import ButtonsAddDelete from '../CommonComponents/ButtonsAddDelete/ButtonsAddDelete';
+import NumberArticle from './NumberArticle/NumberArticle';
 
 const FormArticle = (props) => {
     let checkAuthorRef = React.createRef()
     let checkTitleRef = React.createRef()
     let checkHouseRef = React.createRef()
     let checkTomRef = React.createRef()
+    let checkNumberArticleRef = React.createRef()
+    const handleChangeArticleNumber = () => {
+        let param = {
+            type: 'UPDATE-NUMBER-ARTICLE-CHECK',
+            id: props.state.id,
+            newElem: checkNumberArticleRef.current.checked
+        }
+        props.dispatch(param)
+    }
     const handleChangeAuthor = () => {
         let param = {
             type: 'UPDATE-CHECK-AUTHOR',
@@ -92,10 +102,6 @@ const FormArticle = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Number' />
-            <Field elem={props.state.place}
-                dispatch={props.dispatch}
-                index={props.state.id}
-                type='Place' />
         </>
     }
     else if (props.type === 'NEWSPAPER') {
@@ -112,10 +118,8 @@ const FormArticle = (props) => {
                 dispatch={props.dispatch}
                 index={props.state.id}
                 type='Date' />
-            <Field elem={props.state.numberArticle}
-                dispatch={props.dispatch}
-                index={props.state.id}
-                type='Number' />
+            <NumberArticle state={props.state} dispatch={props.dispatch} check={props.state.numberArticleCheck} />
+            <input type="checkbox" ref={checkNumberArticleRef} onChange={handleChangeArticleNumber} />Без номера газеты
         </>
     }
     return (

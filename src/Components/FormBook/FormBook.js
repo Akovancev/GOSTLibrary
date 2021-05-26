@@ -7,7 +7,6 @@ import ReHouseForm from './ReHouseForm/ReHouseForm';
 import TitleInformation from './TitleInformation/TitleInformation';
 import Tom from './TomForm/TomForm';
 import TranslatorForm from './TranslatorForm/TranslatorForm';
-import Translator from './TranslatorForm/Translators/Translator';
 
 const FormBook = (props) => {
     let checkAuthorRef = React.createRef()
@@ -41,12 +40,6 @@ const FormBook = (props) => {
     const handleChangeTom = () => {
         let param = {
             type: 'UPDATE-CHECK-TOM',
-            id: props.state.id,
-            newElem: checkTomRef.current.checked
-        }
-        props.dispatch(param)
-        param = {
-            type: 'UPDATE-CHECK-TOM-NUMBER',
             id: props.state.id,
             newElem: checkTomRef.current.checked
         }
