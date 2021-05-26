@@ -31,7 +31,7 @@ class App extends Component {
                     check={store.state.length > 1} 
                     type='STATE' />
         <br />
-        <button onClick={this.generate}>Generate!</button>
+        <button onClick={this.generate}>Сформировать документ</button>
       </div>
     );
   }

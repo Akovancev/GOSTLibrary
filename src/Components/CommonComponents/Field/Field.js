@@ -142,7 +142,7 @@ const Field = (props) => {
     t = 'UPDATE-COUNT'
   }
   else if (props.type === 'T-Name') {
-    placeholder = 'Название тома'
+    placeholder = 'Название тома (можно оставить пустым)'
     t = 'UPDATE-TOM-NAME'
   }
   else if (props.type === 'T-Number') {

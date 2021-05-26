@@ -12,7 +12,7 @@ const TypeSelector = (props) => {
     }
     return (
         <select onChange={onChangeSelect} ref={changeSelect}>
-            <option value='book'>Книги, в том числе и многотомные</option>
+            <option value='book'>Книги, в том числе и многотомные издания</option>
             <option value='article-book'>Статья из книги</option>
             <option value='article-magazine'>Статья из журнала</option>
             <option value='article-newspaper'>Статья из газеты</option>

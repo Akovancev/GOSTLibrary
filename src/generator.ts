@@ -45,14 +45,14 @@ export class DocumentCreator {
         text += props.author[0].authorSurname + ' ' + props.author[0].authorIO + ' '
       }
       text += props.title + ' '
-      if (!props.tomCheck) {
+      if (props.tomCheck) {
         text += ': в ' + props.tomCount + ' т. '
-      }
-      if (!props.tomCheckNumber) {
-        text += 'Т. ' + props.tomNumber + ' '
-      }
-      if (props.tomName != '') {
-        text += props.tomName + ' '
+        if (props.tomCheckNumber) {
+          text += 'Т. ' + props.tomNumber + ' '
+          if (props.tomName != '') {
+            text += props.tomName + ' '
+          }
+        }
       }
       if (!props.titleCheck) {
         text += ': ' + props.titleInformation + ' '

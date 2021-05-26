@@ -47,6 +47,8 @@ const FormBook = (props) => {
     }
     return (
         <>
+            <br />
+            Авторы
             <AuthorForm state={props.state} dispatch={props.dispatch} check={props.state.authorCheck} />
             <input type="checkbox" ref={checkAuthorRef} onChange={handleChangeAuthor} />Без автора
             <Field elem={props.state.title}
@@ -55,8 +57,13 @@ const FormBook = (props) => {
                 type='Title' />
             <TitleInformation state={props.state} dispatch={props.dispatch} check={props.state.titleCheck} />
             <input type="checkbox" ref={checkTitleRef} onChange={handleChangeTitle} />Без сведений о книге
+            <br />
+            Редакторы
             <EditorForm state={props.state} dispatch={props.dispatch} />
+            <br /><br />
+            Переводчики
             <TranslatorForm state={props.state} dispatch={props.dispatch} />
+            <br /> Коллективы
             <CollectiveForm state={props.state} dispatch={props.dispatch} />
             <Field elem={props.state.place}
                 dispatch={props.dispatch}
@@ -75,7 +82,7 @@ const FormBook = (props) => {
             <Field elem={props.state.count}
                 dispatch={props.dispatch}
                 index={props.state.id}
-                type='Count' />
+                type='Count' /><br /><br />
             <input type="checkbox" ref={checkTomRef} onChange={handleChangeTom} />Многотомное издание
             <Tom state={props.state} dispatch={props.dispatch} check={props.state.tomCheck} />
         </>

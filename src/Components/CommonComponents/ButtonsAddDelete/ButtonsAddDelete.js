@@ -18,13 +18,13 @@ const ButtonsAddDelete = (props) => {
     if (props.check)
     return (
         <>
-            <button onClick={onClickAdd}>Add</button>
-            <button onClick={onClickDelete}>Delete</button>
+            <button onClick={onClickAdd}>Добавить источник</button>
+            <button onClick={onClickDelete}>Удалить источник</button>
         </>
     )
     else return (
         <>
-            <button onClick={onClickAdd}>Add</button>
+            <button onClick={onClickAdd}>Добавить источник</button>
         </>
     )
 }
