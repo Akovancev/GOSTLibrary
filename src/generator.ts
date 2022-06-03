@@ -5,8 +5,6 @@ import {
 } from 'docx';
 import { store } from './store'
 
-
-
 export class DocumentCreator {
   private createTextAuthor(props: any): String {
     let text = ''
@@ -31,8 +29,6 @@ export class DocumentCreator {
   }
   private createTextCollective(props: any): String {
     let text = ''
-    for (var p of props) {
-    }
     return text.substring(0, text.length - 2)
   }
 
@@ -49,7 +45,7 @@ export class DocumentCreator {
         text += ': в ' + props.tomCount + ' т. '
         if (props.tomCheckNumber) {
           text += 'Т. ' + props.tomNumber + ' '
-          if (props.tomName != '') {
+          if (props.tomName !== '') {
             text += props.tomName + ' '
           }
         }
@@ -79,12 +75,12 @@ export class DocumentCreator {
       text += props.title + ' '
       if (props.tomCheck) {
         text += ': в ' + props.tomCount + ' т. '
-      }
-      if (props.tomCheckNumber) {
-        text += 'Т. ' + props.tomNumber + ' '
-      }
-      if (props.tomName != '') {
-        text += props.tomName + ' '
+        if (props.tomCheckNumber) {
+          text += 'Т. ' + props.tomNumber + ' '
+          if (props.tomName !== '') {
+            text += props.tomName + ' '
+          }
+        }
       }
       if (!props.titleCheck) {
         text += ': ' + props.titleInformation + ' '
@@ -99,7 +95,7 @@ export class DocumentCreator {
       text += '. - ' + props.place
       text += ' : ' + props.publishingHouse
       text += ', ' + props.year
-      text += '. - ' + ' С. '+ props.count + '.'
+      text += '. -  С. '+ props.count + '.'
     }
     if (props.type === 'article-magazine') {
       text += props.authorArticle[0].authorSurname + ' ' + props.authorArticle[0].authorIO + ' '
@@ -108,7 +104,7 @@ export class DocumentCreator {
       text += props.title
       text += '. - ' + props.year
       text += '. - ' + props.numberArticle
-      text += '. - ' + ' С. '+ props.count + '.'
+      text += '. -  С. '+ props.count + '.'
     }
     if (props.type === 'article-newspaper') {
       text += props.authorArticle[0].authorSurname + ' ' + props.authorArticle[0].authorIO + ' '
@@ -120,7 +116,7 @@ export class DocumentCreator {
       if (!props.numberCheck) {
         text += ' (' + props.numberArticle + ')'
       }
-      text += '. - ' + ' С. '+ props.count + '.'
+      text += '. -  С. '+ props.count + '.'
     }
     if (props.type === 'conference') {
       text += props.title + ' '
