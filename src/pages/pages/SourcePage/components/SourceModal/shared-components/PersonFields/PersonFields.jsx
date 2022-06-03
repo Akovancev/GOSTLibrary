@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { FieldArray, Field } from 'formik';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { FormikTextField } from 'formik-material-fields';
+import { TextField } from 'formik-mui';
 
 
 export default function PersonFields({ name, values }) {
@@ -14,16 +14,16 @@ export default function PersonFields({ name, values }) {
                         {values.map((_, index) => {
                             return (
                                 <React.Fragment key={index}>
-                                    <FormikTextField
+                                    <Field
+                                        component={TextField}
                                         label="Фамилия"
                                         name={`${name}.${index}.surname`}
                                     />
-                                    <FormikTextField
+                                    <Field
+                                        component={TextField}
                                         label="Инициалы"
                                         name={`${name}.${index}.initials`}
                                     />
-                                    {/* <TextField name={`${name}.${index}.surname`} value={value.surname} />
-                                    <TextField label="Инициалы" name={`${name}.${index}.initials`} value={value.initials} /> */}
                                     <Button onClick={() => remove(index)}><DeleteIcon /></Button>
                                 </React.Fragment>
                             )
