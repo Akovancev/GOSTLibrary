@@ -1,5 +1,6 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import SourceContextProvider from '../core/context/SourceContext/SourceContext';
 import SourcePage from './pages/SourcePage/SourcePage';
 
 // import { saveAs } from "file-saver";
@@ -35,7 +36,9 @@ export default function App() {
   // );
   return (
     <QueryClientProvider client={queryClient}>
-      <SourcePage />
+      <SourceContextProvider>
+        <SourcePage />
+      </SourceContextProvider>
     </QueryClientProvider>
   )
 }

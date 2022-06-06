@@ -1,11 +1,11 @@
 import React from 'react';
 import { CardContent, Typography } from '@mui/material';
-import StyledCard from '../../shared-components/StyledCard/StyledCard';
+import SourceCardWithModal from '../../shared-components/SourceCardWithModal/SourceCardWithModal';
 import { getPersonSurnameWithInitials } from '../../../../../../../core/services/personService';
 
 export default function ArticleBookCard({ cardData }) {
     return (
-        <StyledCard>
+        <SourceCardWithModal sourceData={cardData}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Статья из книги
@@ -17,6 +17,6 @@ export default function ArticleBookCard({ cardData }) {
                     {`${cardData.book.title} ${getPersonSurnameWithInitials(cardData.book.authors)}`}
                 </Typography>
             </CardContent>
-        </StyledCard>
+        </SourceCardWithModal>
     )
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import { CardContent, Typography } from '@mui/material';
-import StyledCard from '../../shared-components/StyledCard/StyledCard';
+import SourceCardWithModal from '../../shared-components/SourceCardWithModal/SourceCardWithModal';
 import moment from 'moment';
 import { getPersonSurnameWithInitials } from '../../../../../../../core/services/personService';
 
 export default function ConferenceCard({ cardData }) {
     return (
-        <StyledCard>
+        <SourceCardWithModal sourceData={cardData}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Конференция
@@ -21,6 +21,6 @@ export default function ConferenceCard({ cardData }) {
                     {`${cardData.city}, ${moment(cardData.date).format('DD.MM.YYYY')}`}
                 </Typography>
             </CardContent>
-        </StyledCard>
+        </SourceCardWithModal>
     )
 }

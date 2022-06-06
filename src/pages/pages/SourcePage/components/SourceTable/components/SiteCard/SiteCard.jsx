@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardContent, Typography } from '@mui/material';
-import StyledCard from '../../shared-components/StyledCard/StyledCard';
+import SourceCardWithModal from '../../shared-components/SourceCardWithModal/SourceCardWithModal';
 
 export default function SiteCard({ cardData }) {
     return (
-        <StyledCard>
+        <SourceCardWithModal sourceData={cardData}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Сайт
@@ -16,6 +16,6 @@ export default function SiteCard({ cardData }) {
                     {cardData.URL}
                 </Typography>
             </CardContent>
-        </StyledCard>
+        </SourceCardWithModal>
     )
 }

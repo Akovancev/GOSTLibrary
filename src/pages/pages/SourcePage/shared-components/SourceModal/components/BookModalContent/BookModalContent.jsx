@@ -8,7 +8,7 @@ const fieldStyle = {
     margin: 10,
 }
 
-export default function BookModalContent({ values }) {
+export default function BookModalContent({ values, fromArticle }) {
     return (
         <React.Fragment>
             <Box sx={{ width: 600 }}>
@@ -21,7 +21,7 @@ export default function BookModalContent({ values }) {
                 </Typography>
                 <PersonFields values={values.authors} name="authors" />
             </Box>
-            <Box sx={{ width: 600}}>
+            <Box sx={{ width: 600 }}>
                 <Typography
                     style={fieldStyle}
                     variant="h6"
@@ -30,10 +30,9 @@ export default function BookModalContent({ values }) {
                     Редакторы
                 </Typography>
                 <PersonFields values={values.editors} name="editors" />
-
             </Box>
 
-            <Box sx={{ width: 600}}>
+            <Box sx={{ width: 600 }}>
                 <Typography
                     style={fieldStyle}
                     variant="h6"
@@ -74,12 +73,14 @@ export default function BookModalContent({ values }) {
                 label="Год издания"
                 name="yearOfPublishing"
             />
-            <Field
-                component={TextField}
-                style={fieldStyle}
-                label="Количество страниц"
-                name="numberOfPages"
-            />
+            {Boolean(!fromArticle) && (
+                <Field
+                    component={TextField}
+                    style={fieldStyle}
+                    label="Количество страниц"
+                    name="numberOfPages"
+                />
+            )}
         </React.Fragment>
     )
 }

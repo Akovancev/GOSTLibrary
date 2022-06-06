@@ -10,7 +10,8 @@ export default function PersonFields({ name, values }) {
         <FieldArray name={name}>
             {({ remove, push }) => (
                 <React.Fragment>
-                    {values.map((_, index) => {
+                    {/*убрать ? */}
+                    {values?.map((_, index) => {
                         return (
                             <React.Fragment key={index}>
                                 <Field
