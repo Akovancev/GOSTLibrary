@@ -18,8 +18,16 @@ export default function SourceListModal({ visible, onClose }) {
     return (
         <Modal open={visible} onClose={onClose}>
             <Box sx={boxStyle}>
-                <Typography>Список литературы</Typography>
                 <RulesSelect />
+                <Typography sx={{ marginTop: 3 }}>
+
+                    1. Браун Э. Изучаем JavaScript. Руководство по созданию современных веб-сайтов / Э. Браун. – Москва : Альфа-книга, 2017. – 364 с.
+                    <br />
+                    2. Резиг Д. Секреты JavaScript ниндзя / Д. Резиг, Бибо Б. – Москва : Вильямс, 2016. – 416 с.
+                    <br />
+                    3. Современный учебник JavaScript : [сайт]. – URL: https://learn.javascript.ru/ (дата обращения: 14.05.2021).
+
+                </Typography>
                 <br />
                 <Button>Сгенерировать word-файл</Button>
                 <Button>Сгенерировать tex-файл</Button>

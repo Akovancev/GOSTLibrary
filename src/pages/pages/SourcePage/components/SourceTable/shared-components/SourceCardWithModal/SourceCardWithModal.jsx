@@ -6,7 +6,7 @@ import { useSourceContext } from '../../../../../../../core/context/SourceContex
 
 const styles = {
     width: 325,
-    height: 175,
+    height: 225,
     float: 'left',
     margin: 3
 }

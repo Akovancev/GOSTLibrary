@@ -70,11 +70,13 @@ export default function SourceModal({ sourceData, visible, onClose }) {
     return (
         <Modal open={visible} onClose={onClose}>
             <Box sx={boxStyle}>
-                {sourceData ?
-                    <Typography style={{ margin: 10 }}>
+                {
+                    sourceData ?
+                    <Typography style={{ margin: 10 }} variant="h4">
                         {selectNodeConfig[sourceData.code]}
                     </Typography>
-                    : <SourceTypeSelect value={activeTypeValue} onChange={handleChangeActiveType} />}
+                    : <SourceTypeSelect value={activeTypeValue} onChange={handleChangeActiveType} />
+                }
                 <Formik initialValues={sourceData || initialValues} onSubmit={onSubmit}>
                     {({ values }) => {
                         const Component = componentsConfig[activeTypeValue];

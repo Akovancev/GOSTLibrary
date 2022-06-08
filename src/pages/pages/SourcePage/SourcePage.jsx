@@ -5,6 +5,18 @@ import SourceModal from './shared-components/SourceModal/SourceModal';
 import useSourcePage from './hooks/useSourcePage';
 import useModal from './hooks/useModal';
 import SourceListModal from './components/SourceListModal/SourceListModal';
+import { useSourceContext } from '../../../core/context/SourceContext/SourceContext';
+import FilterPanel from './components/FilterPanel/FilterPanel';
+
+const buttonStyles = {
+    marginLeft: 25,
+    marginTop: 10
+}
+
+const buttonProps = {
+    variant: 'contained',
+    style: buttonStyles,
+}
 
 export default function SourcePage() {
     const {
@@ -20,13 +32,29 @@ export default function SourcePage() {
         handleCloseModal: handleCloseModalSourceListModal,
     } = useModal();
 
+    const { selectedCards } = useSourceContext();
+
     return (
-        <Container maxWidth="lg">
-            <Button onClick={handleOpenModalSourceModal} style={{ marginLeft: 25, marginTop: 10 }} variant="contained">Добавить</Button>
-            <Button onClick={handleOpenModalSourceListModal} style={{ marginLeft: 25, marginTop: 10 }} variant="contained">Сформировать список</Button>
-            <SourceModal visible={visibleSourceModal} onClose={handleCloseModalSourceModal} />
-            <SourceListModal visible={visibleSourceListModal} onClose={handleCloseModalSourceListModal} />
-            <SourceTable sourceData={sourceData} />
-        </Container>
+        <>
+            <FilterPanel />
+            <Container maxWidth="lg">
+                <Button
+                    onClick={handleOpenModalSourceModal}
+                    {...buttonProps}
+                >
+                    Добавить
+                </Button>
+                <Button
+                    disabled={selectedCards.length === 0}
+                    onClick={handleOpenModalSourceListModal}
+                    {...buttonProps}
+                >
+                    Сформировать список
+                </Button>
+                <SourceModal visible={visibleSourceModal} onClose={handleCloseModalSourceModal} />
+                <SourceListModal visible={visibleSourceListModal} onClose={handleCloseModalSourceListModal} />
+                <SourceTable sourceData={sourceData} />
+            </Container>
+        </>
     )
 }
