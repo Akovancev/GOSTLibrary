@@ -1,6 +1,11 @@
 import React from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import RulesSelect from './components/RulesSelect/RulesSelect';
+import { useSourceContext } from '../../../../../core/context/SourceContext/SourceContext';
+import { DocumentCreator } from '../../../../../generator/DocumentCreator';
+import { GOST_2018 } from '../../../../../core/constants/RULES_CODES';
+import { saveAs } from "file-saver";
+import { Packer } from "docx";
 
 const boxStyle = {
     position: 'absolute',
@@ -15,23 +20,58 @@ const boxStyle = {
 };
 
 export default function SourceListModal({ visible, onClose }) {
+    const { selectedCards } = useSourceContext();
+    const documentCreator = new DocumentCreator();
+
+    const generateWordDocument = () => {
+        const doc = documentCreator.createWordFormat({
+            sources: selectedCards,
+            ruleCode: GOST_2018,
+        })
+
+        Packer.toBlob(doc).then(blob => {
+            saveAs(blob, "Список используемой литературы.docx");
+            console.log("Document created successfully");
+        });
+    }
+
+    const generateTexDocument = () => {
+        const doc = documentCreator.createWordFormat({
+            sources: selectedCards,
+            ruleCode: GOST_2018,
+        })
+
+        Packer.toBlob(doc).then(blob => {
+            saveAs(blob, "Список используемой литературы.bib");
+            console.log("Document created successfully");
+        });
+    }
+
     return (
         <Modal open={visible} onClose={onClose}>
             <Box sx={boxStyle}>
                 <RulesSelect />
                 <Typography sx={{ marginTop: 3 }}>
-
-                    1. Браун Э. Изучаем JavaScript. Руководство по созданию современных веб-сайтов / Э. Браун. – Москва : Альфа-книга, 2017. – 364 с.
-                    <br />
-                    2. Резиг Д. Секреты JavaScript ниндзя / Д. Резиг, Бибо Б. – Москва : Вильямс, 2016. – 416 с.
-                    <br />
-                    3. Современный учебник JavaScript : [сайт]. – URL: https://learn.javascript.ru/ (дата обращения: 14.05.2021).
-
+                    {selectedCards.map((source, index) => (
+                        <React.Fragment key={source.id}>
+                            {`${index + 1}. ${documentCreator.getFormatStringByCode({
+                                source,
+                                ruleCode: GOST_2018
+                            })}`}
+                            <br />
+                        </React.Fragment>
+                    ))}
                 </Typography>
                 <br />
-                <Button>Сгенерировать word-файл</Button>
-                <Button>Сгенерировать tex-файл</Button>
-                <Button>Закрыть</Button>
+                <Button onClick={generateWordDocument}>
+                    Сгенерировать word-файл
+                </Button>
+                <Button onClick={generateTexDocument}>
+                    Сгенерировать tex-файл
+                </Button>
+                <Button onClick={onClose}>
+                    Закрыть
+                </Button>
             </Box>
         </Modal>
     )
