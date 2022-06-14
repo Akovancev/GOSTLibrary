@@ -36,7 +36,7 @@ export default function SourceListModal({ visible, onClose }) {
     }
 
     const generateTexDocument = () => {
-        const doc = documentCreator.createWordFormat({
+        const doc = documentCreator.createTexFormat({
             sources: selectedCards,
             ruleCode: GOST_2018,
         })

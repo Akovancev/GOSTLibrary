@@ -7,6 +7,8 @@ import SiteModalContent from './components/SiteModalContent/SiteModalContent';
 import SourceAPI from '../../../../../core/api/SourceAPI';
 import SourceTypeSelect from './components/SourceTypeSelect/SourceTypeSelect';
 import ArticleBookModalContent from './components/ArticleBookModalContent/ArticleBookModalContent';
+import ConferenceModalContent from './components/ConferenceModalContent/ConferenceModalContent';
+import moment from 'moment';
 
 const selectNodeConfig = {
     [SOURCE_CODES.BOOK_CODE]: 'Книга',
@@ -29,24 +31,12 @@ const boxStyle = {
     p: 4,
 };
 
-const initialValues = {
-    authors: [
-        {
-            surname: '',
-            initials: '',
-        }
-    ],
-    editors: [],
-    translators: [],
-    collectives: []
-}
-
 const componentsConfig = {
     [SOURCE_CODES.BOOK_CODE]: BookModalContent,
     [SOURCE_CODES.ARTICLE_BOOK_CODE]: ArticleBookModalContent,
-    [SOURCE_CODES.ARTICLE_MAGAZINE_CODE]: BookModalContent,
-    [SOURCE_CODES.ARTICLE_NEWSPAPER_CODE]: BookModalContent,
-    [SOURCE_CODES.CONFERENCE_CODE]: BookModalContent,
+    [SOURCE_CODES.ARTICLE_MAGAZINE_CODE]: <></>,
+    [SOURCE_CODES.ARTICLE_NEWSPAPER_CODE]: <></>,
+    [SOURCE_CODES.CONFERENCE_CODE]: ConferenceModalContent,
     [SOURCE_CODES.SITE_CODE]: SiteModalContent,
 }
 
@@ -67,17 +57,33 @@ export default function SourceModal({ sourceData, visible, onClose }) {
         onClose()
     }
 
+    const initialValues = sourceData ? {
+        ...sourceData,
+        date: moment(sourceData.date).format('YYYY-MM-DD')
+    } :
+        {
+            authors: [
+                {
+                    surname: '',
+                    initials: '',
+                }
+            ],
+            editors: [],
+            translators: [],
+            collectives: []
+        }
+
     return (
         <Modal open={visible} onClose={onClose}>
             <Box sx={boxStyle}>
                 {
                     sourceData ?
-                    <Typography style={{ margin: 10 }} variant="h4">
-                        {selectNodeConfig[sourceData.code]}
-                    </Typography>
-                    : <SourceTypeSelect value={activeTypeValue} onChange={handleChangeActiveType} />
+                        <Typography style={{ margin: 10 }} variant="h4">
+                            {selectNodeConfig[sourceData.code]}
+                        </Typography>
+                        : <SourceTypeSelect value={activeTypeValue} onChange={handleChangeActiveType} />
                 }
-                <Formik initialValues={sourceData || initialValues} onSubmit={onSubmit}>
+                <Formik initialValues={initialValues} onSubmit={onSubmit}>
                     {({ values }) => {
                         const Component = componentsConfig[activeTypeValue];
                         const renderComnonent = () => <Component values={values} />;
